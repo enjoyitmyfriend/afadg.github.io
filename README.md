@@ -9,4 +9,4 @@ https://afadg.cn/Lucas/index.html
 
 
 * I bought the domain server so that you could visit your webpage online by etonhouse-dg.top, but one day it will expire so at that time you should use the original address to access the webpage.
-<br>e.g. http://afadg.github.io/Lucas/index.html
+<br>e.g. update later...
