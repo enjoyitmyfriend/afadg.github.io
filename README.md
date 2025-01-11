@@ -1,8 +1,9 @@
 Hi there 👋
 =
 * Here is the demo of HTML<br>
-https://afadg.cn/Lucas/index.html<br>
-https://afadg.cn/Bruce/Homepage.html
+<a href='https://afadg.cn/Lucas/index.html'>https://afadg.cn/Lucas/index.html</a>
+<br>
+<a href='https://afadg.cn/Bruce/Homepage.html'>https://afadg.cn/Bruce/Homepage.html</a>
 
 * You can change the part behind the domain name (afadg.cn) to open your webpage where there has a folder stored all your materials. 
 * The folder name usually name with your English name.
