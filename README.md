@@ -1,6 +1,6 @@
 # Hi there 👋
 
-* Here is the demo of HTML<br>
+* Here are the demos of HTML<br>
 <a href='https://afadg.cn/Lucas/index.html'>https://afadg.cn/Lucas/index.html</a>
 &nbsp;<br>
 <a href='https://afadg.cn/Bruce/Homepage.html'>https://afadg.cn/Bruce/Homepage.html</a>
