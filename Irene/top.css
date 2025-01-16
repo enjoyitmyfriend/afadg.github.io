@@ -1,0 +1,45 @@
+body{
+	font-size:20px;
+	background-color: black;
+				
+	text-align: left;
+	color: #ffffff;
+}
+
+#header{
+	height: 80px;
+	width:1000px;
+	margin: 0 auto;
+}
+				
+#logo{
+	float: left;
+	height: 100px;
+	
+	margin-right: 23px;
+}
+				
+#dingbu{
+	float: right;
+	line-height: 100px;
+	height: 108px;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	position:relative;
+	top:0px;
+}
+
+#dingbu li{
+	float: left;
+	font-size: 14pt;
+	height: 108px;
+	text-align: center;
+}
+
+#dingbu a{
+	color: #ffffff;
+	padding: 29px 15px;
+	outline: 0;
+	text-decoration: none;
+}
