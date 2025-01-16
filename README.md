@@ -28,7 +28,7 @@
 ### 2025:
 <a href='https://afadg.cn/Andy/Homepage.html'>https://afadg.cn/Andy/Homepage.html</a>
 &nbsp;<br>
-<a href='https://afadg.cn/Bill/Homepage.html'>href='https://afadg.cn/Bill/Homepage.html</a>
+<a href='https://afadg.cn/Bill/Homepage.html'>'https://afadg.cn/Bill/Homepage.html</a>
 &nbsp;<br>
 <a href='https://afadg.cn/Bruce/Homepage.html'>https://afadg.cn/Bruce/Homepage.html</a>
 &nbsp;<br>
@@ -36,7 +36,7 @@ https://afadg.cn/Carl/Homepage.html
 &nbsp;<br>
 <a href='https://afadg.cn/Chloe/Homepage.html'>https://afadg.cn/Chloe/Homepage.html</a>
 &nbsp;<br>
-https://afadg.cn/Irene/Homepage.html
+<a href='https://afadg.cn/Irene/Homepage.html'>https://afadg.cn/Irene/Homepage.html</a>
 &nbsp;<br>
 https://afadg.cn/Jamal/Homepage.html
 &nbsp;<br>
@@ -44,7 +44,7 @@ https://afadg.cn/Jamal/Homepage.html
 &nbsp;<br>
 <a href='https://afadg.cn/Jesse/Homepage.html'>https://afadg.cn/Jesse/Homepage.html</a>
 &nbsp;<br>
-https://afadg.cn/Kelly/Homepage.html
+<a href='https://afadg.cn/Kelly/Homepage.html'>https://afadg.cn/Kelly/Homepage.html</a>
 &nbsp;<br>
 https://afadg.cn/Lin/Homepage.html
 &nbsp;<br>
