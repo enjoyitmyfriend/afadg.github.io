@@ -34,7 +34,7 @@ https://afadg.cn/Bill/Homepage.html
 &nbsp;<br>
 https://afadg.cn/Carl/Homepage.html
 &nbsp;<br>
-https://afadg.cn/Chloe/Homepage.html
+<a href='https://afadg.cn/Chloe/Homepage.html'>https://afadg.cn/Chloe/Homepage.html</a>
 &nbsp;<br>
 https://afadg.cn/Irene/Homepage.html
 &nbsp;<br>
@@ -48,7 +48,7 @@ https://afadg.cn/Kelly/Homepage.html
 &nbsp;<br>
 https://afadg.cn/Lin/Homepage.html
 &nbsp;<br>
-https://afadg.cn/Mia/Homepage.html
+<a href='https://afadg.cn/Mia/Homepage.html'>https://afadg.cn/Mia/Homepage.html</a>
 &nbsp;<br>
 <a href='https://afadg.cn/Phoenix/Homepage.html'>https://afadg.cn/Phoenix/Homepage.html</a>
 &nbsp;<br>
