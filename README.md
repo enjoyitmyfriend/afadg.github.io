@@ -11,6 +11,7 @@
 * Only support access to those who have already uploaded their files to the database.
 <!--etonhouse-dg.top-->
 * I bought the domain server so that you could visit your webpage online by afadg.cn, but one day it will expire so at that time (20250621) you should use the original address to access the webpage.
+* Notice: We just learned the basic skills about HTML, and we didn't learn how to make a responsive layout, i.e. it will automatically adjust the webpage content size to implement the effect you want when your webpage is visited on different devices on different screen sizes.
 
 <br>
 
