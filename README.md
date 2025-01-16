@@ -28,7 +28,7 @@
 ### 2025:
 <a href='https://afadg.cn/Andy/Homepage.html'>https://afadg.cn/Andy/Homepage.html</a>
 &nbsp;<br>
-https://afadg.cn/Bill/Homepage.html
+<a href='https://afadg.cn/Bill/Homepage.html'>href='https://afadg.cn/Bill/Homepage.html</a>
 &nbsp;<br>
 <a href='https://afadg.cn/Bruce/Homepage.html'>https://afadg.cn/Bruce/Homepage.html</a>
 &nbsp;<br>
@@ -40,7 +40,7 @@ https://afadg.cn/Irene/Homepage.html
 &nbsp;<br>
 https://afadg.cn/Jamal/Homepage.html
 &nbsp;<br>
-https://afadg.cn/Jayden/Homepage.html
+<a href='https://afadg.cn/Jayden/Homepage.html'>https://afadg.cn/Jayden/Homepage.html</a>
 &nbsp;<br>
 <a href='https://afadg.cn/Jesse/Homepage.html'>https://afadg.cn/Jesse/Homepage.html</a>
 &nbsp;<br>
