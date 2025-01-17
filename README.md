@@ -47,7 +47,7 @@ https://afadg.cn/Jamal/Homepage.html
 &nbsp;<br>
 <a href='https://afadg.cn/Kelly/Homepage.html'>https://afadg.cn/Kelly/Homepage.html</a>
 &nbsp;<br>
-https://afadg.cn/Lin/Homepage.html
+<a href='https://afadg.cn/Lin/Homepage.html'>https://afadg.cn/Lin/Homepage.html</a>
 &nbsp;<br>
 <a href='https://afadg.cn/Mia/Homepage.html'>https://afadg.cn/Mia/Homepage.html</a>
 &nbsp;<br>
@@ -57,6 +57,6 @@ https://afadg.cn/Lin/Homepage.html
 &nbsp;<br>
 https://afadg.cn/Yahia/Homepage.html
 &nbsp;<br>
-<a href='https://afadg.cn/Zack/Homepage.html'>https://afadg.cn/Zack/Homepage.html</a>
+https://afadg.cn/Zack/Homepage.html
 &nbsp;<br>
 
