@@ -29,7 +29,7 @@
 ### 2025:
 <a href='https://afadg.cn/Andy/Homepage.html'>https://afadg.cn/Andy/Homepage.html</a>
 &nbsp;<br>
-<a href='https://afadg.cn/Bill/Homepage.html'>'https://afadg.cn/Bill/Homepage.html</a>
+<a href='https://afadg.cn/Bill/Homepage.html'>https://afadg.cn/Bill/Homepage.html</a>
 &nbsp;<br>
 <a href='https://afadg.cn/Bruce/Homepage.html'>https://afadg.cn/Bruce/Homepage.html</a>
 &nbsp;<br>
