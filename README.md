@@ -57,6 +57,6 @@ https://afadg.cn/Jamal/Homepage.html
 &nbsp;<br>
 https://afadg.cn/Yahia/Homepage.html
 &nbsp;<br>
-https://afadg.cn/Zack/Homepage.html
+<a href='https://afadg.cn/Zack/Homepage.html'>https://afadg.cn/Zack/Homepage.html</a>
 &nbsp;<br>
 
