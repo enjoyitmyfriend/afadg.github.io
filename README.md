@@ -53,10 +53,10 @@ https://afadg.cn/Lin/Homepage.html
 &nbsp;<br>
 <a href='https://afadg.cn/Phoenix/Homepage.html'>https://afadg.cn/Phoenix/Homepage.html</a>
 &nbsp;<br>
-https://afadg.cn/Tom/Homepage.html
+<a href='https://afadg.cn/Tom/Homepage.html'>https://afadg.cn/Tom/Homepage.html</a>
 &nbsp;<br>
 https://afadg.cn/Yahia/Homepage.html
 &nbsp;<br>
-https://afadg.cn/Zack/Homepage.html
+<a href='https://afadg.cn/Zack/Homepage.html'>https://afadg.cn/Zack/Homepage.html</a>
 &nbsp;<br>
 
