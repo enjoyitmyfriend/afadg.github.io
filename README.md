@@ -39,7 +39,7 @@ https://afadg.cn/Carl/Homepage.html
 &nbsp;<br>
 <a href='https://afadg.cn/Irene/Homepage.html'>https://afadg.cn/Irene/Homepage.html</a>
 &nbsp;<br>
-https://afadg.cn/Jamal/Homepage.html
+<a href='https://afadg.cn/Jamal/Homepage.html'>https://afadg.cn/Jamal/Homepage.html</a>
 &nbsp;<br>
 <a href='https://afadg.cn/Jayden/Homepage.html'>https://afadg.cn/Jayden/Homepage.html</a>
 &nbsp;<br>
