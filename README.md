@@ -33,7 +33,7 @@
 &nbsp;<br>
 <a href='https://afadg.cn/Bruce/Homepage.html'>https://afadg.cn/Bruce/Homepage.html</a>
 &nbsp;<br>
-https://afadg.cn/Carl/Homepage.html
+<a href='https://afadg.cn/Carl/Homepage.html'>https://afadg.cn/Carl/Homepage.html</a>
 &nbsp;<br>
 <a href='https://afadg.cn/Chloe/Homepage.html'>https://afadg.cn/Chloe/Homepage.html</a>
 &nbsp;<br>
