@@ -25,7 +25,6 @@
 &nbsp;<br>
 <a href='https://afadg.cn/Lucas/index.html'>https://afadg.cn/Lucas/index.html</a>
 &nbsp;<br>
-
 ### 2025:
 <a href='https://afadg.cn/Andy/Homepage.html'>https://afadg.cn/Andy/Homepage.html</a>
 &nbsp;<br>
@@ -61,10 +60,9 @@
 &nbsp;<br>
 
 ## Original address 👋
-* Once if the domain name expire, pls visit the webpage by the following address<br>
+Once if the domain name expire, pls visit the webpage by the following address<br>
 ### 2024:
 e.g. <a href='https://enjoyitmyfriend.github.io/afadg.github.io/Bryant/index.html'>https://enjoyitmyfriend.github.io/afadg.github.io/Bryant/index.html</a>
-
 ### 2025:
 e.g. <a href='https://enjoyitmyfriend.github.io/afadg.github.io/Andy/Homepage.html'>https://enjoyitmyfriend.github.io/afadg.github.io/Andy/Homepage.html</a>
 &nbsp;<br>
