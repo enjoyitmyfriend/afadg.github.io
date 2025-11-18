@@ -1,4 +1,4 @@
-<img width="1637" height="312" alt="image" src="https://github.com/user-attachments/assets/f83c7cea-a05b-41f6-8f1e-17b697b771c1" /># Hi there 👋
+# Hi there 👋
 
 * Here are the demos of HTML<br>
 <a href='https://afadg.cn/Lucas/index.html'>https://afadg.cn/Lucas/index.html</a>
