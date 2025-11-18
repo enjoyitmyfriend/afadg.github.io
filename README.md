@@ -1,4 +1,4 @@
-# Hi there 👋
+<img width="1637" height="312" alt="image" src="https://github.com/user-attachments/assets/f83c7cea-a05b-41f6-8f1e-17b697b771c1" /># Hi there 👋
 
 * Here are the demos of HTML<br>
 <a href='https://afadg.cn/Lucas/index.html'>https://afadg.cn/Lucas/index.html</a>
@@ -60,3 +60,13 @@
 <a href='https://afadg.cn/Zack/Homepage.html'>https://afadg.cn/Zack/Homepage.html</a>
 &nbsp;<br>
 
+## Original address 👋
+* Once if the domain name expire, pls visit the webpage by the following address<br>
+### 2024:
+e.g. <a href='https://enjoyitmyfriend.github.io/afadg.github.io/Bryant/index.html'>https://enjoyitmyfriend.github.io/afadg.github.io/Bryant/index.html</a>
+
+### 2025:
+e.g. <a href='https://enjoyitmyfriend.github.io/afadg.github.io/Andy/Homepage.html'>https://enjoyitmyfriend.github.io/afadg.github.io/Andy/Homepage.html</a>
+&nbsp;<br>
+e.g. <a href='https://enjoyitmyfriend.github.io/afadg.github.io/Irene/Homepage.html'>https://enjoyitmyfriend.github.io/afadg.github.io/Irene/Homepage.html</a>
+&nbsp;<br>
