@@ -4,6 +4,8 @@
 <a href='https://afadg.cn/Lucas/index.html'>https://afadg.cn/Lucas/index.html</a>
 &nbsp;<br>
 <a href='https://afadg.cn/Bruce/Homepage.html'>https://afadg.cn/Bruce/Homepage.html</a>
+&nbsp;<br>
+<a href='https://afadg.cn/CJCao/Homepage.html'>https://afadg.cn/CJCao/Homepage.html</a>
 
 * You can change the part behind the domain name (afadg.cn) to open your webpage where there has a folder stored all your materials. 
 * The folder name usually name with your English name.
@@ -58,6 +60,39 @@
 &nbsp;<br>
 <a href='https://afadg.cn/Zack/Homepage.html'>https://afadg.cn/Zack/Homepage.html</a>
 &nbsp;<br>
+### 2026:
+<a href='https://afadg.cn/VivianDeng/Homepage.html'>https://afadg.cn/VivianDeng/Homepage.html</a>
+&nbsp;<br>
+<a href='https://afadg.cn/IcarusLi/Homepage.html'>https://afadg.cn/IcarusLi/Homepage.html</a>
+&nbsp;<br>
+<a href='https://afadg.cn/JasmineChan/Homepage.html'>https://afadg.cn/JasmineChan/Homepage.html</a>
+&nbsp;<br>
+<a href='https://afadg.cn/JefferyTian/Homepage.html'>https://afadg.cn/JefferyTian/Homepage.html</a>
+&nbsp;<br>
+<a href='https://afadg.cn/JackWang/Homepage.html'>https://afadg.cn/JackWang/Homepage.html</a>
+&nbsp;<br>
+<a href='https://afadg.cn/PrinceWang/Homepage.html'>https://afadg.cn/PrinceWang/Homepage.html</a>
+&nbsp;<br>
+<a href='https://afadg.cn/CJCao/Homepage.html'>https://afadg.cn/CJCao/Homepage.html</a>
+&nbsp;<br>
+<a href='https://afadg.cn/RubyLiu/Homepage.html'>https://afadg.cn/RubyLiu/Homepage.html</a>
+&nbsp;<br>
+<a href='https://afadg.cn/AnxeliaZhong/Homepage.html'>https://afadg.cn/AnxeliaZhong/Homepage.html</a>
+&nbsp;<br>
+<a href='https://afadg.cn/CarlWang/Homepage.html'>https://afadg.cn/CarlWang/Homepage.html</a>
+&nbsp;<br>
+<a href='https://afadg.cn/BruceHuang/Homepage.html'>https://afadg.cn/BruceHuang/Homepage.html</a>
+&nbsp;<br>
+<a href='https://afadg.cn/JustinLiu/Homepage.html'>https://afadg.cn/JustinLiu/Homepage.html</a>
+&nbsp;<br>
+<a href='https://afadg.cn/JackyChen/Homepage.html'>https://afadg.cn/JackyChen/Homepage.html</a>
+&nbsp;<br>
+<a href='https://afadg.cn/TomZhang/Homepage.html'>https://afadg.cn/TomZhang/Homepage.html</a>
+&nbsp;<br>
+<a href='https://afadg.cn/ZackLei/Homepage.html'>https://afadg.cn/ZackLei/Homepage.html</a>
+&nbsp;<br>
+
+
 
 ## Original address 👋
 Once if the domain name expire, pls visit the webpage by the following address<br>
@@ -67,4 +102,7 @@ e.g. <a href='https://enjoyitmyfriend.github.io/afadg.github.io/Bryant/index.htm
 e.g. <a href='https://enjoyitmyfriend.github.io/afadg.github.io/Andy/Homepage.html'>https://enjoyitmyfriend.github.io/afadg.github.io/Andy/Homepage.html</a>
 &nbsp;<br>
 e.g. <a href='https://enjoyitmyfriend.github.io/afadg.github.io/Irene/Homepage.html'>https://enjoyitmyfriend.github.io/afadg.github.io/Irene/Homepage.html</a>
+&nbsp;<br>
+### 2026:
+e.g. <a href='https://enjoyitmyfriend.github.io/afadg.github.io/CJCao/Homepage.html'>https://enjoyitmyfriend.github.io/afadg.github.io/CJCao/Homepage.html</a>
 &nbsp;<br>
