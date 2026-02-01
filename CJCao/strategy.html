@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>曹髦 · 实战策略</title>
+<style>
+/* ===== 技能颜色系统 ===== */
+.skill-text{
+  margin-top:30px;
+  font-size:18px;
+  line-height:2;
+}
+
+.skill-qingzheng{ color:#9fd3ff; }   /* 清正：理性/清冷蓝 */
+.skill-jiushi{ color:#e6b980; }      /* 酒诗：酒意/金色 */
+.skill-fangzhu{ color:#c58cff; }     /* 放逐：压制/紫色 */
+.skill-juejin{ color:#ff6a6a; }      /* 决进：终局/血红 */
+
+/* 技能图片区 */
+.skill-image{
+  margin:40px 0;
+  border:1px solid #333;
+  padding:12px;
+  background:#0f1116;
+}
+.skill-image img{
+  width:100%;
+  display:block;
+  border-radius:8px;
+  opacity:.95;
+  box-shadow:0 0 30px rgba(255,200,120,.08);
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;scroll-behavior:smooth;}
+body{
+  font-family:"Helvetica Neue","Microsoft YaHei",sans-serif;
+  background:#000;
+  color:#eee;
+  overflow-x:hidden;
+}
+
+/* ===== 顶部导航 ===== */
+nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:16px 36px;
+  background:rgba(8,8,10,0.65);
+  backdrop-filter:blur(14px);
+  z-index:1000;
+}
+nav a{
+  color:#c9a45c;
+  text-decoration:none;
+  margin-right:30px;
+  letter-spacing:1px;
+  font-size:15px;
+}
+nav a:hover{color:#f3d98b;}
+
+/* ===== HERO ===== */
+.hero{
+  position:relative;
+  height:80vh;
+  overflow:hidden;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+}
+
+/* 背景视频 */
+.hero video.bg-video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:0;
+}
+
+/* 遮罩 + 金光 */
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 55% 35%, rgba(220,180,90,.18), transparent 55%),
+    linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.85));
+  z-index:1;
+}
+
+/* 金光扫过 */
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:-120%;
+  background:linear-gradient(
+    120deg,
+    transparent 40%,
+    rgba(255,215,130,.25),
+    transparent 60%
+  );
+  animation:sweep 6s infinite;
+  z-index:2;
+}
+@keyframes sweep{
+  from{transform:translate(-50%,-50%);}
+  to{transform:translate(50%,50%);}
+}
+
+/* ===== Hero 标题 ===== */
+.hero-content{
+  position:relative;
+  z-index:3;
+  padding-bottom:50px;
+  text-align:center;
+}
+.hero h1{
+  font-size:52px;
+  letter-spacing:6px;
+  color:#e6c36a;
+  text-shadow:0 0 30px rgba(230,195,106,.35);
+  margin:0;
+}
+.hero p{
+  font-size:20px;
+  color:#ddd;
+  line-height:1.8;
+  margin-top:12px;
+}
+
+/* ===== 内容区 ===== */
+.container{
+  max-width:960px;
+  margin:auto;
+  padding:100px 30px;
+}
+.section{
+  margin-bottom:120px;
+}
+.section h2{
+  color:#c9a45c;
+  font-size:34px;
+  border-left:6px solid #c9a45c;
+  padding-left:18px;
+  margin-bottom:30px;
+}
+.section h3{
+  font-size:22px;
+  margin-top:40px;
+}
+.section p{
+  font-size:18px;
+  color:#e2e2e2;
+  line-height:1.9;
+}
+
+/* 媒体块 */
+.media{
+  margin:50px 0;
+  border:1px solid #333;
+  padding:12px;
+  background:#0f1116;
+  overflow:hidden;
+}
+.media img{
+  width:100%;
+  display:block;
+  border-radius:8px;
+}
+
+/* 注释块 */
+.note{
+  margin:40px 0;
+  padding:26px 30px;
+  background:#16181d;
+  border-left:4px solid #8b3a3a;
+  color:#b8b8b8;
+  font-size:16px;
+}
+
+/* ===== 底部 ===== */
+footer{
+  padding:80px 20px;
+  text-align:center;
+  color:#777;
+  font-size:14px;
+}
+
+/* ===== 动画系统（同历史页） ===== */
+
+/* Hero 入场 */
+.hero h1,
+.hero p{
+  opacity:0;
+  transform:translateY(40px);
+  animation:heroFade 1.4s ease forwards;
+}
+.hero p{ animation-delay:.4s; }
+
+@keyframes heroFade{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* 正文翻页 */
+.section{
+  opacity:0;
+  transform:translateY(60px);
+  transition:opacity 1.2s ease, transform 1.2s ease;
+}
+.section.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* 轻微震动强调 */
+.section.shake{
+  animation:subtleShake .45s ease both;
+}
+@keyframes subtleShake{
+  0%{transform:translateY(60px) translateX(0);}
+  20%{transform:translateY(0) translateX(-1.2px);}
+  40%{transform:translateY(0) translateX(1.2px);}
+  60%{transform:translateY(0) translateX(-0.6px);}
+  80%{transform:translateY(0) translateX(0.6px);}
+  100%{transform:translateY(0) translateX(0);}
+}
+
+/* ===== 技能颜色强制生效层 ===== */
+.skill-text p{
+  color:inherit;
+}
+
+.skillqingzheng{ color:#1B4E6E !important; }   /* 清正 */
+.skilljiushi{ color:#2A6B5F !important; }      /* 酒诗 */
+.skillfangzhu{ color:#481A4F !important; }     /* 放逐 */
+.skilljuejin{ color:#6E1B1B !important; }      /* 决进 */
+
+</style>
+</head>
+
+<body>
+
+<nav>
+<a href="Homepage.html">首页</a>
+<a href="history.html">历史背景</a>
+<a href="strategy.html">实战策略</a>
+<a href="skills.html">技能设计</a>
+<a href="evaluation.html">评价与争议</a>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <!-- 视频路径可换 -->
+  <video class="bg-video" autoplay muted loop playsinline>
+    <source src="historybj.mp4">
+  </video>
+
+  <div class="hero-content">
+    <h1>实 战 策 略</h1>
+    <p>
+      非强度流武将<br>
+      规则破坏型博弈核心
+    </p>
+  </div>
+</section>
+
+<div class="container">
+
+<section class="section">
+<h2>一、技能介绍</h2>
+
+<!-- 技能结构图 -->
+<div class="skill-image">
+  <img src="sks.png" alt="曹髦技能结构示意图">
+</div>
+
+<h3><span style="color:#BD9A56;">持恒技·潜龙</span></h3>
+<p>
+游戏开始时，你获得20点道心值。如下情况时，你对应获得一定数量的“道心”值：<br>
+<span style="color:#B03F3A;">1.你受到1点伤害后——10点；<br>
+2.你造成1点伤害后——15点；<br>
+3.你获得牌时——5点。<br></span>
+你根据道心值视为拥有如下技能：25点-“清正”；50点-“酒诗”；75点-“放逐”；99点一“决进”。你的道心值上限为99。
+</p>
+
+<h3><span style="color:#BD9A56;">主公技·卫统</span></h3>
+<p>
+主公技(作为主公才生效)。游戏开始时，若场上有其他魏势力角色且你拥有“潜龙”，
+则你因“潜龙”于游戏开始时获得的道心值修改为60点
+</p>
+
+<h3><span style="color:#BD9A56;"></清正 · </span>
+<span style="color:#BD9A56;">酒诗 · </span>
+<span style="color:#BD9A56;">放逐 · </span>
+<span style="color:#BD9A56;">决进</span></h3>
+
+<div class="skill-text">
+
+<p class="skillqingzheng">
+【清正】<br>
+出牌阶段开始时，你可以弃置手牌中一种花色的所有牌，
+观看一名其他角色的手牌并弃置其中一种花色的所有牌，
+若弃置该角色的牌少于弃置你的牌，你对其造成1点伤害。
+</p>
+
+<p class="skilljiushi">
+【酒诗】<br>
+当你需要使用【酒】时，若你的武将牌正面向上，你可以翻面，视为使用一张【酒】。
+当你受到伤害后，若你的武将牌背面向上，且你未因此次伤害发动过，你可以翻面。
+当你翻面时，你随机获得牌堆中的一张锦囊牌。
+</p>
+
+<p class="skillfangzhu">
+【放逐】<br>
+出牌阶段限一次，你可以选择一项令一名其他角色执行（不能选择上个出牌阶段选择的目标）：  
+1.直到其下个回合结束时，其不能使用锦囊牌外的手牌；  
+2.直到其下个回合结束时，其技能失效。
+</p>
+
+<p class="skilljuejin">
+【决进】<br>
+限定技。出牌阶段：你可令所有角色依次调整体力值为1并获得X点护甲（X为其因调整减少的体力值），
+你因此法获得的护甲值额外+2点，
+令场上获得“向死存魏”光环效果：
+将牌堆、弃牌堆、场上、所有角色手牌中的【酒】、【桃】、【闪】移出游戏。
+</p>
+
+</div>
+
+</section>
+
+
+<section class="section">
+<h2>二、实战思路</h2>
+
+<h3><span style="color:#BD9A56;">身份适性</span></h3>
+<p><span style="color:#B03F3A;">主公、地主</span></p>
+
+<h3><span style="color:#BD9A56;">武将定位</span></h3>
+<p>规则型武将，而非输出型武将；靠“阶段进化”改变对局结构</p>
+
+<h3><span style="color:#BD9A56;">关键卡牌</span></h3>
+<p>杀、无中生有、铁索连环</p>
+
+<h3><span style="color:#BD9A56;">核心打法逻辑</span></h3>
+<p>
+1. 主动吃伤/制造输出，加速潜龙成长节奏<br>
+2. 允许自身进入危险态，换取技能解锁优势<br>
+3. 不追求稳定控场，追求“结构破坏”<br>
+4. 决进不是翻盘技，是“重构对局规则”的终局技
+</p>
+
+<p>
+曹髦不是靠强度赢，而是靠“把游戏变成别的游戏”赢。
+</p>
+</section>
+
+<div class="media">
+  <video src="shizha.mp4" alt="视频" autoplay muted loop 
+         style="width: 100%; height: auto; max-height: 500px; object-fit: contain; display: block;"></video>
+</div>
+
+<div class="note">
+战术示意 · 非固定套路，仅展示机制理解方式
+</div>
+
+</div>
+
+<footer>
+  CJ Cao · SJNA｜ 非官方 · 看看得了<br>
+  2026 1.30
+</footer>
+
+<script>
+const sections = document.querySelectorAll('.section');
+
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+
+      const title = entry.target.querySelector('h2');
+      if(title){
+        const text = title.innerText.trim();
+        if(text === '二、实战思路'){
+          entry.target.classList.add('shake');
+        }
+      }
+
+      observer.unobserve(entry.target);
+    }
+  });
+},{threshold:0.18});
+
+sections.forEach(s=>observer.observe(s));
+</script>
+
+</body>
+</html>

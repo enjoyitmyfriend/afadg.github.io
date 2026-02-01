@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>曹髦 · 技能设计与机制解析</title>
+<style>
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  font-family:"Helvetica Neue","Microsoft YaHei",sans-serif;
+  background:#0b0c10;
+  color:#e6e6e6;
+  line-height:1.9;
+  overflow-x:hidden;
+}
+
+/* ================= 文字动画系统（新增） ================= */
+.fade-up{
+  opacity:0;
+  transform:translateY(40px);
+  animation:fadeUp 1.4s ease forwards;
+}
+.delay-1{animation-delay:.3s;}
+@keyframes fadeUp{
+  to{opacity:1;transform:translateY(0);}
+}
+.reveal{
+  opacity:0;
+  transform:translateY(60px);
+  transition:opacity 1.2s ease, transform 1.2s ease;
+}
+.reveal.active{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* 顶部导航 */
+nav{
+  position:fixed; top:0; width:100%; padding:14px 32px;
+  background:rgba(8,8,10,0.78); backdrop-filter:blur(12px); z-index:999;
+}
+nav a{
+  color:#c9a45c; text-decoration:none; margin-right:26px; font-size:15px; letter-spacing:1px;
+}
+nav a:hover{color:#f3d98b;}
+
+/* 页面头图背景视频 */
+.page-hero{
+  position:relative; height:70vh; min-height:480px;
+  display:flex; align-items:flex-end;
+  overflow:hidden;
+}
+.page-hero video{
+  position:absolute; top:0; left:0; width:100%; height:100%;
+  object-fit:cover; z-index:1;
+}
+
+/* ===== 新增：居中容器样式 ===== */
+.page-hero-content{
+  position:relative; 
+  z-index:2; 
+  padding:80px 60px;
+  /* 以下为新增或修改的属性 */
+  width: 100%;
+  text-align: center; /* 文字居中 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 80px 20px; /* 调整内边距以适应居中布局 */
+}
+.page-hero h1{ 
+  font-size:52px; 
+  letter-spacing:6px; 
+  color:#e6c36a; 
+  margin: 0 0 20px 0; /* 控制标题间距 */
+}
+.page-hero p{ 
+  max-width:760px; 
+  color:#d0d0d0; 
+  font-size:18px; 
+  margin: 0 auto; /* 段落居中 */
+}
+
+/* 主体 */
+.container{ max-width:1000px; margin:auto; padding:120px 30px; }
+
+/* 技能区块 */
+.skill{ margin-bottom:160px; }
+.skill h2{ font-size:34px; color:#c9a45c; border-left:6px solid #c9a45c; padding-left:18px; margin-bottom:30px; }
+.skill-desc{ font-size:18px; color:#e2e2e2; margin-bottom:36px; }
+.skill-card{ position:relative; background: radial-gradient(circle at top, rgba(201,164,92,.15), transparent 70%); border:1px solid #c9a45c; padding:36px; overflow:hidden; }
+.skill-card::after{ content:""; position:absolute; inset:-100%; background:linear-gradient(120deg, transparent 40%, rgba(255,215,120,.35), transparent 60%); animation:sweep 4s infinite; }
+@keyframes sweep{ from{transform:translateX(-60%) translateY(-60%);} to{transform:translateX(60%) translateY(60%);} }
+.skill-grid{ display:grid; grid-template-columns:1.2fr 1fr; gap:40px; margin-top:30px; }
+.skill-grid img, .skill-grid video{ width:100%; display:block; border:1px solid #333; background:#0f1116; }
+
+/* 机制说明 */
+.mechanism{ margin-top:30px; padding:26px 30px; background:#14161b; border-left:5px solid #8b3a3a; color:#cfcfcf; font-size:17px; }
+
+/* 浮窗 */
+.skill-overlay{
+  position:fixed; top:0; left:0; width:100%; height:100%;
+  background:rgba(0,0,0,0.85); display:none;
+  justify-content:center; align-items:center; z-index:2000;
+}
+.skill-overlay video{
+  max-width:80%;
+  max-height:80%;
+  background:#000;
+  border:1px solid rgba(201,164,92,0.3);
+}
+
+/* 普通技能虚影 */
+.ghost-video{
+  opacity:0.5;
+  filter: blur(1.6px) saturate(0.8) brightness(0.85);
+}
+
+/* 决进三阶段 */
+.juejin-0{
+  opacity:0.15;
+  filter: blur(12px) saturate(0.4) brightness(0.6);
+}
+.juejin-mid{
+  transition: all 5s linear;
+}
+.juejin-solid{
+  opacity:1;
+  filter: blur(0px) saturate(1) brightness(1);
+}
+
+/* 决进特效容器 */
+#juejin-effect{
+  position:fixed; top:0; left:0; width:100%; height:100%;
+  pointer-events:none; z-index:1999;
+}
+
+/* 原始红色粒子 */
+.particle{
+  position:absolute;
+  width:6px; height:6px;
+  border-radius:50%;
+  background:red;
+  opacity:0.8;
+  pointer-events:none;
+  animation:particleAnim 1s linear forwards;
+}
+@keyframes particleAnim{
+  0%{transform:translate(0,0) scale(1); opacity:1;}
+  100%{transform:translate(var(--dx), var(--dy)) scale(0); opacity:0;}
+}
+
+/* 刀痕 */
+.slash-img{
+  position:absolute;
+  pointer-events:none;
+  opacity:0;
+}
+
+/* 页脚 */
+footer{
+  padding:80px 20px;
+  text-align:center;
+  color:#777;
+  font-size:14px;
+}
+
+/* ===== Hero 标题文字动画（和 index 页同风格） ===== */
+.hero-text{
+  opacity:0;
+  transform:translateY(50px);
+  animation:heroText 1.6s ease forwards;
+}
+
+.hero-sub{
+  opacity:0;
+  transform:translateY(50px);
+  animation:heroText 1.6s ease forwards;
+  animation-delay:.5s;
+}
+
+@keyframes heroText{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* 添加用于Canvas粒子系统的样式 */
+<canvas id="juejin-particles" style="position:fixed;inset:0;pointer-events:none;z-index:1998;"></canvas>
+</style>
+</head>
+
+<body>
+
+<nav>
+<a href="Homepage.html">首页</a>
+<a href="history.html">历史背景</a>
+<a href="strategy.html">实战策略</a>
+<a href="skills.html">技能设计</a>
+<a href="evaluation.html">评价与争议</a>
+</nav>
+
+<header class="page-hero">
+  <video id="hero-video" src="skillsbg.mp4" autoplay muted loop></video>
+  <!-- ===== 修改：将内容包裹在 .page-hero-content 中以实现居中 ===== -->
+  <div class="page-hero-content">
+    <h1 class="hero-text">曹髦 · 技能设计与机制解析</h1>
+    <p class="hero-sub">曹髦的技能不是为了稳定胜率，而是为了复现一次 注定失败、却无法回避的政治选择。</p>
+  </div>
+</header>
+
+<div class="container">
+
+<section class="skill reveal">
+<h2>清正</h2>
+<div class="skill-desc">朕虽不德，昧于大道，思与宇内共臻兹路</div>
+<div class="skill-card">
+<div class="skill-grid">
+<div>
+<p>武类太祖（曹操）年少时，曾仰慕太祖，南征北战，平定四方</p>
+<div class="mechanism">【机制要点】<br>· 破坏对方手牌<br>· 适当攒道心<br>· 跟据对方武将决定节奏</div>
+<button onclick="playOverlay('qingzheng')" style="margin-top:20px;padding:16px 32px;font-size:18px;cursor:pointer;">清 正</button>
+</div>
+<div><video src="qingzheng.mp4" muted loop></video></div>
+</div>
+</div>
+</section>
+
+<section class="skill reveal">
+<h2>酒诗</h2>
+<div class="skill-desc">心愤无所表，下笔即成篇。</div>
+<div class="skill-card">
+<div class="skill-grid">
+<div>
+<p>文同陈思（曹植）也曾经拜读过陈思王的文章，对他的心境不由向往。</p>
+<div class="mechanism">【机制要点】<br>· 高风险，高情绪回报<br>· 与手牌结构强关联<br>· 易形成“孤立回合”</div>
+<button onclick="playOverlay('jiushi')" style="margin-top:20px;padding:16px 32px;font-size:18px;cursor:pointer;">酒 诗</button>
+</div>
+<div><video src="jiushi.mp4" muted loop></video></div>
+</div>
+</div>
+</section>
+
+<section class="skill reveal">
+<h2>放逐</h2>
+<div class="skill-desc">朕继文帝风流，亦当效其权略。</div>
+<div class="skill-card">
+<div class="skill-grid">
+<div>
+<p>如今，朝堂不安，当效仿魏文帝</p>
+<div class="mechanism">【机制要点】<br>· 高收益<br>· 尽量与伤害牌有联动<br>· 差不多要拼死一搏</div>
+<button onclick="playOverlay('fangzhu')" style="margin-top:20px;padding:16px 32px;font-size:18px;cursor:pointer;">放 逐</button>
+</div>
+<div><video src="fangzhu.mp4" muted loop></video></div>
+</div>
+</div>
+</section>
+
+<section class="skill reveal">
+<h2>决进</h2>
+<div class="skill-desc">朕安可坐受废羞，今日当与卿自主讨之。</div>
+<div class="skill-card">
+<div class="skill-grid">
+<div>
+<p>决进是整个武将设计的情绪顶点。</p>
+<div class="mechanism">【设计核心】<br>· 觉醒即走向终局<br>· 极强象征意义<br>· 胜负已不再重要</div>
+<button onclick="playJuejin()" style="margin-top:20px;padding:16px 32px;font-size:18px;cursor:pointer;">决 进</button>
+</div>
+<div><video src="juejinsk.mp4" muted loop></video></div>
+</div>
+</div>
+</section>
+
+</div>
+
+<div id="overlay" class="skill-overlay">
+  <video id="overlay-video" autoplay></video>
+</div>
+
+<div id="juejin-effect"></div>
+<canvas id="juejin-particles" style="position:fixed;inset:0;pointer-events:none;z-index:1998;"></canvas>
+
+<footer>CJ Cao · SJNA｜ 非官方 · 看看得了<br>2026 1.30</footer>
+
+<script>
+/* ===== 文字滚动动画 ===== */
+const reveals=document.querySelectorAll('.reveal');
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add('active');
+observer.unobserve(entry.target);
+}
+});
+},{threshold:0.15});
+reveals.forEach(r=>observer.observe(r));
+
+const overlay=document.getElementById('overlay');
+const overlayVideo=document.getElementById('overlay-video');
+const juejinEffect=document.getElementById('juejin-effect');
+let juejinStarted=false;
+
+/* 普通技能 */
+function playOverlay(skill){
+overlay.style.display='flex';
+overlayVideo.className='ghost-video';
+let v='',a='';
+if(skill==='qingzheng'){v='qingzhengs.mp4';a='qingzheng.wav';}
+if(skill==='jiushi'){v='jiushis.mp4';a='ajiushi.wav';}
+if(skill==='fangzhu'){v='fangzhus.mp4';a='fangzhu.wav';}
+overlayVideo.src=v;overlayVideo.play();
+new Audio(a).play();
+overlayVideo.onended=()=>{overlay.style.display='none';overlayVideo.className='';}
+}
+
+/* 决进 */
+function playJuejin(){
+overlay.style.display='flex';
+overlayVideo.className='juejin-0';
+overlayVideo.src='ksjuejin.mp4';
+overlayVideo.play();
+new Audio('audio/heartbeat.mp3').play();
+
+setTimeout(()=>{overlayVideo.classList.add('juejin-mid');overlayVideo.classList.remove('juejin-0');},1000);
+setTimeout(()=>{overlayVideo.classList.add('juejin-solid');},6000);
+
+overlayVideo.onended=()=>{
+overlay.style.display='none';
+overlayVideo.className='';
+document.getElementById('hero-video').src='juejinsk.mp4';
+if(!juejinStarted){
+  juejinStarted=true;
+  startParticles();   // 使用新的粒子系统
+  startSlashSystem();
+}
+}
+}
+
+/* 新版粒子系统 */
+let canvas, ctx;
+let juejinParticles = [];
+let isJuejinActive = false;
+
+function initJuejinCanvas() {
+  if (canvas) return; // 避免重复初始化
+  canvas = document.getElementById('juejin-particles');
+  if (!canvas) {
+    canvas = document.createElement('canvas');
+    canvas.id = 'juejin-particles';
+    canvas.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:1998;';
+    document.body.appendChild(canvas);
+  }
+  ctx = canvas.getContext('2d');
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+}
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+function createJuejinParticles(count) {
+  juejinParticles = [];
+  for (let i = 0; i < count; i++) {
+    juejinParticles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 3 + 1,
+      vx: (Math.random() - 0.5) * 0.6,
+      vy: Math.random() * 1.0 + 0.4,
+      color: `rgba(${180 + Math.random() * 50}, 0, 0, ${0.5 + Math.random() * 0.4})`
+    });
+  }
+}
+
+function animateJuejinParticles() {
+  if (!isJuejinActive) return;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+  juejinParticles.forEach(p => {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = p.color;
+    ctx.fill();
+    
+    p.x += p.vx;
+    p.y += p.vy;
+    
+    // 边界循环（可选：也可让粒子消失）
+    if (p.y > canvas.height) p.y = 0;
+    if (p.x > canvas.width) p.x = 0;
+    if (p.x < 0) p.x = canvas.width;
+  });
+  
+  requestAnimationFrame(animateJuejinParticles);
+}
+
+// 新版 startParticles
+function startParticles() {
+  if (isJuejinActive) return; // 防止重复启动
+  
+  initJuejinCanvas();
+  isJuejinActive = true;
+  createJuejinParticles(220); // 粒子数量可调
+  animateJuejinParticles();
+  
+  // 可选：5秒后淡出并清理（根据你的需求）
+  // setTimeout(() => {
+  //   isJuejinActive = false;
+  // }, 5000);
+}
+
+/* 刀痕系统 */
+const slashImages=['slash1.png','slash2.png','slash3.png','slash4.png'];
+function startSlashSystem(){
+function spawnSlash(){
+const img=document.createElement('img');
+img.src=slashImages[Math.floor(Math.random()*4)];
+img.className='slash-img';
+img.style.top=Math.random()*80+'%';
+img.style.left=Math.random()*80+'%';
+img.style.width=(160+Math.random()*160)+'px';
+juejinEffect.appendChild(img);
+
+img.animate([{opacity:0},{opacity:1}],{duration:3000,fill:'forwards'});
+
+setTimeout(()=>{
+img.animate([{opacity:1},{opacity:0}],{duration:3000,fill:'forwards'});
+setTimeout(()=>img.remove(),3000);
+},3000);
+
+setTimeout(spawnSlash,2500+Math.random()*1500);
+}
+spawnSlash();
+}
+</script>
+
+</body>
+</html>

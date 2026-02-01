@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>曹髦 · 天子弑逆</title>
+
+<style>
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;scroll-behavior:smooth;}
+body{
+  font-family:"Helvetica Neue","Microsoft YaHei",sans-serif;
+  background:#000;
+  color:#eee;
+  overflow-x:hidden;
+}
+
+/* ===== 顶部导航 ===== */
+nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:16px 36px;
+  background:rgba(8,8,10,0.65);
+  backdrop-filter:blur(14px);
+  z-index:1000;
+}
+nav a{
+  color:#c9a45c;
+  text-decoration:none;
+  margin-right:30px;
+  letter-spacing:1px;
+  font-size:15px;
+}
+nav a:hover{color:#f3d98b;}
+
+/* ===== HERO（视频背景 + 遮罩 + 金光） ===== */
+.hero{
+  position:relative;
+  height:100vh;
+  overflow:hidden;
+}
+
+/* 🎬【首页背景视频】 */
+.hero video.bg-video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:0;
+}
+
+/* 暗层 + 金光遮罩 */
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 55% 35%, rgba(220,180,90,.18), transparent 55%),
+    linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.85));
+  z-index:1;
+}
+
+/* 金光扫过动画 */
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:-120%;
+  background:linear-gradient(
+    120deg,
+    transparent 40%,
+    rgba(255,215,130,.25),
+    transparent 60%
+  );
+  animation:sweep 6s infinite;
+  z-index:2;
+}
+@keyframes sweep{
+  from{transform:translate(-50%,-50%);}
+  to{transform:translate(50%,50%);}
+}
+
+/* ===== 标题 ===== */
+.hero-content{
+  position:relative;
+  z-index:3;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  animation:fadeIn 1.6s ease forwards;
+}
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(30px);}
+  to{opacity:1;transform:none;}
+}
+.hero h1{
+  font-size:68px;
+  letter-spacing:10px;
+  color:#e6c36a;
+  text-shadow:0 0 40px rgba(230,195,106,.35);
+  margin-bottom:24px;
+}
+.hero p{
+  font-size:20px;
+  color:#ddd;
+  line-height:1.9;
+}
+
+/* ===== 绝进按钮 ===== */
+.trigger{
+  margin-top:60px;
+  padding:16px 44px;
+  border:1px solid #c9a45c;
+  color:#c9a45c;
+  letter-spacing:3px;
+  cursor:pointer;
+  transition:.3s;
+}
+.trigger:hover{
+  background:#c9a45c;
+  color:#111;
+}
+
+/* ===== 绝进闪白层 ===== */
+#flash{
+  position:fixed;
+  inset:0;
+  background:#fff;
+  opacity:0;
+  pointer-events:none;
+  z-index:2000;
+}
+
+/* ===== 绝进浮层视频（大半屏） ===== */
+#juejin-video{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:85%;         /* 大半屏宽度 */
+  max-width:1200px;
+  height:70%;        /* 大半屏高度 */
+  background:rgba(0,0,0,0.85);
+  display:none;
+  z-index:1999;
+  border:2px solid #c9a45c;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 0 60px rgba(230,195,106,0.7);
+}
+#juejin-video video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  border-radius:10px;
+}
+
+/* ===== 下方内容 ===== */
+.section{
+  max-width:960px;
+  margin:auto;
+  padding:140px 30px;
+}
+.section h2{
+  color:#c9a45c;
+  font-size:34px;
+  border-left:6px solid #c9a45c;
+  padding-left:18px;
+  margin-bottom:40px;
+}
+.section p{
+  font-size:18px;
+  color:#e2e2e2;
+}
+
+/* ===== 底部 ===== */
+footer{
+  padding:80px 20px;
+  text-align:center;
+  color:#777;
+  font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<a href="Homepage.html">首页</a>
+<a href="history.html">历史背景</a>
+<a href="strategy.html">实战策略</a>
+<a href="skills.html">技能设计</a>
+<a href="evaluation.html">评价与争议</a>
+</nav>
+
+<!-- ===== HERO 区 ===== -->
+<section class="hero">
+
+  <!-- 🎬【首页背景视频】 -->
+  <video class="bg-video" autoplay muted loop playsinline poster="images/index_poster.jpg">
+    <source src="indexbg.mp4">
+  </video>
+
+  <div class="hero-content">
+    <h1>曹 髦</h1>
+    <p>
+      天子弑逆。<br>
+      朕宁拼一死，逆贼安敢一战。
+    </p>
+
+    <div class="trigger" onclick="juejin()">决 进</div>
+  </div>
+</section>
+
+<!-- ⚡ 闪白效果 -->
+<div id="flash"></div>
+
+<!-- 🎬【绝进浮层视频】 -->
+<div id="juejin-video">
+  <video id="jv" src="juejin.mp4"></video>
+</div>
+
+<!-- 🔊【绝进音效】 -->
+<audio id="sound" src="audio/juejin.mp3"></audio>
+
+<section class="section">
+  <h2 class="hero-text">三国最勇敢无畏的少年皇帝</h2>
+  <p class="hero-sub">
+    曹髦不是为了胜利而设计的角色。  
+    他存在的意义，是让玩家体验一次
+    明知不可为而为之的选择。
+  </p>
+</section>
+
+<footer>
+  CJ Cao · SJNA｜ 非官方 · 看看得了<br>
+  2026 1.30
+</footer>
+
+<script>
+function juejin(){
+  const flash = document.getElementById("flash");
+  const sound = document.getElementById("sound");
+  const box = document.getElementById("juejin-video");
+  const video = document.getElementById("jv");
+  const bgVideo = document.querySelector(".bg-video");
+
+  // 闪白
+  flash.style.opacity = "1";
+  setTimeout(()=>flash.style.opacity="0",300);
+
+  // 播放音效
+  sound.currentTime = 0;
+  sound.play();
+
+  // 播放浮层视频
+  box.style.display="block";
+  video.currentTime=0;
+  video.play();
+
+  video.onended = ()=>{
+    box.style.display="none";
+
+    // ===== 背景视频切换 =====
+    bgVideo.src = "indexbg2.mp4"; // 新背景视频
+    bgVideo.load();
+    bgVideo.play();
+  };
+}
+</script>
+
+</body>
+</html>

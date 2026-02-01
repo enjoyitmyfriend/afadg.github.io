@@ -1,0 +1,360 @@
+ <!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>曹髦 · 终章</title>
+
+<style>
+/* ===== 重置与基础样式 ===== */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Helvetica Neue", "Microsoft YaHei", sans-serif;
+  background: #000;
+  color: #e6e6e6;
+  overflow-x: hidden;
+}
+
+/* ===== 导航栏 ===== */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 14px 30px;
+  background: rgba(10, 10, 12, 0.55);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+}
+nav a {
+  color: #c8a45d;
+  text-decoration: none;
+  margin-right: 28px;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+nav a:hover {
+  color: #f3d98b;
+}
+
+/* ===== Hero 区域 ===== */
+.page-hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+#hero-video {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+/* 红雾遮罩 */
+.page-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(180,0,0,0.25), rgba(0,0,0,0.85));
+  z-index: -1;
+}
+/* Hero 文字 */
+.page-hero-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.hero-text {
+  font-size: 64px;
+  letter-spacing: 14px;
+  color: #b89b5a;
+  opacity: 0;
+  animation: fadeUp 2s ease forwards;
+}
+.hero-sub {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #c9c9c9;
+  opacity: 0;
+  animation: fadeUp 2s ease forwards;
+  animation-delay: .6s;
+}
+
+/* 动画定义 */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 内容容器 */
+.container {
+  max-width: 960px;
+  margin: auto;
+  padding: 120px 30px;
+}
+
+/* 内容入场动画 */
+.section {
+  margin-bottom: 120px;
+  opacity: 0;
+  transform: translateY(60px);
+  transition: 1.4s ease;
+}
+.section.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+.section h2 {
+  color: #c8a45d;
+  font-size: 32px;
+  border-left: 6px solid #c8a45d;
+  padding-left: 16px;
+  margin-bottom: 40px;
+}
+.section p {
+  line-height: 1.9;
+  color: #dcdcdc;
+}
+
+/* 高亮字 */
+span.hl {
+  font-weight: bold;
+  color: inherit;
+}
+
+/* 收官按钮 */
+.end-wrap {
+  text-align: center;
+  margin-top: 120px;
+}
+#endBtn {
+  background: transparent;
+  border: 1px solid #c8a45d;
+  color: #c8a45d;
+  padding: 14px 46px;
+  font-size: 18px;
+  letter-spacing: 4px;
+  cursor: pointer;
+  transition: .4s;
+}
+#endBtn:hover {
+  background: #c8a45d;
+  color: #000;
+}
+
+/* 页脚 */
+footer {
+  padding: 60px;
+  text-align: center;
+  color: #777;
+  font-size: 14px;
+}
+
+/* 特效层 */
+#particles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+#knife-flash {
+  position: fixed;
+  inset: 0;
+  background: white;
+  opacity: 0;
+  z-index: 2000;
+  pointer-events: none; /* 修复挡住按钮 */
+}
+#popup-video-wrap {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  opacity: 0;
+  pointer-events: none;
+  transition: .6s;
+}
+#popup-video {
+  width: 70%;
+  max-width: 900px;
+  box-shadow: 0 0 80px rgba(255,255,255,0.25);
+}
+</style>
+</head>
+
+<body>
+
+<!-- 导航 -->
+<nav>
+  <a href="Homepage.html">首页</a>
+  <a href="history.html">历史背景</a>
+  <a href="strategy.html">实战策略</a>
+  <a href="skills.html">技能设计</a>
+  <a href="evaluation.html">评价与争议</a>
+</nav>
+
+<!-- Hero -->
+<header class="page-hero">
+  <video id="hero-video" src="juejinafter.mp4" autoplay muted loop></video>
+  <div class="page-hero-content">
+    <h1 class="hero-text"><span>终 章</span></h1>
+    <p class="hero-sub">不是胜负的终结，而是意志的定格</p>
+  </div>
+</header>
+
+<canvas id="particles"></canvas>
+
+<div class="container">
+  <section class="section reveal">
+    <h2>角色与历史</h2>
+    <p>
+      游戏并不只是机制系统。  
+      它也是理解历史的一种方式。  
+    </p>
+    <p>
+      它帮助我们理解千年前，不同人的生活方式、选择逻辑与时代限制。  
+      理解他们为什么失败，为什么反抗，为什么明知不可为而为之。
+    </p>
+  </section>
+
+  <section class="section reveal">
+    <h2>失败者叙事</h2>
+    <p>
+      曹髦不是胜利者的模型，而是失败者的象征。  
+      他的意义不在于结果，而在于姿态。
+    </p>
+    <p>
+      不是“赢了什么”，  
+      而是“<span class="hl" style="color: #ff6a6a;">选择</span>了什么”。
+    </p>
+  </section>
+
+  <section class="section reveal">
+    <h2>游戏的价值</h2>
+    <p>
+      当游戏不再只是强度排序与胜率模型，  
+      它开始成为叙事载体与历史隐喻。
+    </p>
+    <p>
+      规则，机制，技能，数值，  
+      都可以成为表达的一部分。
+    </p>
+  </section>
+
+  <div class="end-wrap reveal">
+    <button id="endBtn">于 此 · 收 官</button>
+  </div>
+</div>
+
+<footer>
+  CJ Cao · SJNA｜ 非官方 · 看看得了<br>
+  2026 1.30
+</footer>
+
+<div id="knife-flash"></div>
+
+<div id="popup-video-wrap">
+  <video id="popup-video" src="juejinswbefore.mp4"></video>
+</div>
+
+<script>
+/* ===== 滚动动画 ===== */
+const sections = document.querySelectorAll('.section');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('active');
+      io.unobserve(e.target);
+    }
+  })
+}, { threshold: 0.15 });
+sections.forEach(s => io.observe(s));
+
+/* ===== 粒子系统 ===== */
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+canvas.width = innerWidth;
+canvas.height = innerHeight;
+
+let mode = "red";
+let particles = [];
+
+function createParticles(n, color) {
+  particles = [];
+  for (let i = 0; i < n; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 2 + 1,
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: Math.random() * 0.8 + 0.3,
+      color
+    });
+  }
+}
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = p.color;
+    ctx.fill();
+    p.x += p.vx;
+    p.y += p.vy;
+    if (p.y > canvas.height) p.y = 0;
+    if (p.x > canvas.width) p.x = 0;
+    if (p.x < 0) p.x = canvas.width;
+  });
+  requestAnimationFrame(draw);
+}
+
+// 初始红色血雾
+createParticles(220, "rgba(180,0,0,0.7)");
+draw();
+
+/* ===== 收官按钮交互 ===== */
+const btn = document.getElementById('endBtn');
+const flash = document.getElementById('knife-flash');
+const popup = document.getElementById('popup-video-wrap');
+const popupVideo = document.getElementById('popup-video');
+const heroVideo = document.getElementById('hero-video');
+
+btn.onclick = () => {
+  // 刀光特效
+  flash.style.transition = "none";
+  flash.style.opacity = 1;
+  setTimeout(() => {
+    flash.style.transition = "1s";
+    flash.style.opacity = 0;
+  }, 80);
+
+  // 弹出视频
+  setTimeout(() => {
+    popup.style.opacity = 1;
+    popup.style.pointerEvents = "auto";
+    popupVideo.play();
+  }, 400);
+};
+
+/* ===== 视频结束回调 ===== */
+popupVideo.onended = () => {
+  popup.style.opacity = 0;
+  popup.style.pointerEvents = "none";
+
+  // 切换背景视频
+  heroVideo.src = "juejinbefore.mp4";
+  heroVideo.play();
+  
+  // 切换粒子为雪花
+  mode = "snow";
+  createParticles(260, "rgba(255,255,255,0.8)");
+};
+</script>
+
+</body>
+</html>

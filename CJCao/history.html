@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>曹髦 · 历史背景</title>
+<style>
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;scroll-behavior:smooth;}
+body{
+  font-family:"Helvetica Neue","Microsoft YaHei",sans-serif;
+  background:#000;
+  color:#eee;
+  overflow-x:hidden;
+}
+
+/* ===== 顶部导航 ===== */
+nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:16px 36px;
+  background:rgba(8,8,10,0.65);
+  backdrop-filter:blur(14px);
+  z-index:1000;
+}
+nav a{
+  color:#c9a45c;
+  text-decoration:none;
+  margin-right:30px;
+  letter-spacing:1px;
+  font-size:15px;
+}
+nav a:hover{color:#f3d98b;}
+
+/* ===== HERO（背景图片或视频 + 遮罩 + 金光） ===== */
+.hero{
+  position:relative;
+  height:80vh;
+  overflow:hidden;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+}
+
+/* 背景图片/视频 */
+.hero video.bg-video,
+.hero img.bg-img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:0;
+}
+
+/* 暗层 + 金光遮罩 */
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 55% 35%, rgba(220,180,90,.18), transparent 55%),
+    linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.85));
+  z-index:1;
+}
+
+/* 金光扫过动画 */
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:-120%;
+  background:linear-gradient(
+    120deg,
+    transparent 40%,
+    rgba(255,215,130,.25),
+    transparent 60%
+  );
+  animation:sweep 6s infinite;
+  z-index:2;
+}
+@keyframes sweep{
+  from{transform:translate(-50%,-50%);}
+  to{transform:translate(50%,50%);}
+}
+
+/* ===== 标题 ===== */
+.hero-content{
+  position:relative;
+  z-index:3;
+  padding-bottom:50px;
+  text-align:center;
+}
+.hero h1{
+  font-size:56px;
+  letter-spacing:6px;
+  color:#e6c36a;
+  text-shadow:0 0 30px rgba(230,195,106,.35);
+  margin:0;
+}
+.hero p{
+  font-size:20px;
+  color:#ddd;
+  line-height:1.8;
+  margin-top:12px;
+}
+
+/* ===== 下方内容 ===== */
+.container{
+  max-width:960px;
+  margin:auto;
+  padding:100px 30px;
+}
+.section{
+  margin-bottom:120px;
+}
+.section h2{
+  color:#c9a45c;
+  font-size:34px;
+  border-left:6px solid #c9a45c;
+  padding-left:18px;
+  margin-bottom:30px;
+}
+.section h3{
+  font-size:22px;
+  margin-top:40px;
+}
+.section p{
+  font-size:18px;
+  color:#e2e2e2;
+  line-height:1.8;
+}
+.media{
+  margin:50px 0;
+  border:1px solid #333;
+  padding:12px;
+  background:#0f1116;
+  overflow:hidden;
+}
+.media img,
+.media video{
+  width:100%;
+  display:block;
+  border-radius:8px;
+}
+
+/* ===== 底部 ===== */
+footer{
+  padding:80px 20px;
+  text-align:center;
+  color:#777;
+  font-size:14px;
+}
+
+/* ===== 历史页文字登场系统（不改HTML） ===== */
+
+/* Hero 标题呼吸式入场 */
+.hero h1,
+.hero p{
+  opacity:0;
+  transform:translateY(40px);
+  animation:heroFade 1.4s ease forwards;
+}
+.hero p{ animation-delay:.4s; }
+
+@keyframes heroFade{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* 正文翻页感 */
+.section{
+  opacity:0;
+  transform:translateY(60px);
+  transition:opacity 1.2s ease, transform 1.2s ease;
+}
+
+/* 出现后状态 */
+.section.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* 关键段落 · 极轻微颤动（只一次） */
+.section.shake{
+  animation:subtleShake .45s ease both;
+}
+
+@keyframes subtleShake{
+  0%{transform:translateY(60px) translateX(0);}
+  20%{transform:translateY(0) translateX(-1.2px);}
+  40%{transform:translateY(0) translateX(1.2px);}
+  60%{transform:translateY(0) translateX(-0.6px);}
+  80%{transform:translateY(0) translateX(0.6px);}
+  100%{transform:translateY(0) translateX(0);}
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+<a href="Homepage.html">首页</a>
+<a href="history.html">历史背景</a>
+<a href="strategy.html">实战策略</a>
+<a href="skills.html">技能设计</a>
+<a href="evaluation.html">评价与争议</a>
+</nav>
+
+<!-- ===== HERO 区（背景视频版） ===== -->
+<section class="hero">
+
+  <!-- 🎬【历史页背景视频】 -->
+  <!-- 文件路径：historybj.mp4 -->
+  <video class="bg-video" autoplay muted loop playsinline>
+    <source src="historybj.mp4">
+  </video>
+
+  <div class="hero-content">
+    <h1>曹 髦</h1>
+    <p>
+      文同陈思，武类太祖<br>
+      年少即位，以死抗权
+    </p>
+  </div>
+
+</section>
+
+
+<div class="container">
+  <section class="section">
+    <h2>基本信息</h2>
+    <p>曹髦（241年－260年），字彦士，沛国谯县（今安徽亳州）人，三国时期曹魏第四位皇帝，魏文帝曹丕之孙、东海定王曹霖之子，死后被追贬为高贵乡公。</p>
+  </section>
+
+  <section class="section">
+    <h2>早年经历</h2>
+    <p>自幼聪慧过人，勤奋好学，尤其推崇儒家经典，展现出远超同龄人的才思与见识。</p>
+  </section>
+
+  <section class="section">
+    <h2>即位背景</h2>
+    <p>嘉平六年（254年），魏帝曹芳被司马师废黜，13岁的曹髦被立为新帝，由司马师、司马昭先后辅政。</p>
+  </section>
+
+  <section class="section">
+    <h2>执政举措</h2>
+    <p>即位后试图推行德政，削减宫廷冗余开支与无用之物，重视儒学教化，曾与群臣讨论《易经》《尚书》等经典。</p>
+  </section>
+
+  <section class="section">
+    <h2>政治处境</h2>
+    <p>在位期间，司马氏家族权倾朝野，曹魏皇室权力被大幅架空，曹髦虽有治国之志，却始终受制于司马昭的专权。</p>
+  </section>
+
+  <section class="section">
+    <h2>核心抗争</h2>
+    <p>甘露五年（260年），因不满司马昭的篡权野心，曹髦决心讨伐，喊出“司马昭之心，路人皆知也”的千古名句，亲率宫中宿卫、奴仆出宫进攻司马昭府邸。</p>
+  </section>
+
+  <section class="section">
+    <h2>悲剧结局</h2>
+    <p>讨伐途中遭遇司马昭亲信阻拦，被太子舍人成济当场弑杀，年仅19岁，其死标志着曹魏皇室彻底失去反抗能力。</p>
+  </section>
+
+  <section class="section">
+    <h2>身后之事</h2>
+    <p>司马昭为掩人耳目，以“平民之礼”安葬曹髦，后在舆论压力下追封其为高贵乡公，成济则被灭族灭口。</p>
+  </section>
+
+  <section class="section">
+    <h2>个人才华</h2>
+    <p>不仅聪慧善辩，还工于书法、擅长绘画，创制九言诗体，留有《伤魂赋并序》等文学作品，艺术与文学造诣颇高。</p>
+  </section>
+
+  <section class="section">
+    <h2>历史评价</h2>
+    <p>被赞为“才慧夙成，有文帝之风”，以弱冠之龄反抗强权的勇气备受推崇；同时也被指出“性急轻躁”，行事缺乏谋略，是皇权旁落时代的悲剧性君主。</p>
+  </section>
+
+  <section class="section">
+    <h2>相关轶事</h2>
+    <p>曾与大臣讨论古代帝王优劣，辨析夏少康与汉高祖刘邦的高下，展现出对治国之道的深刻思考；其绘画技艺被时人认可，留有相关创作记载。</p>
+  </section>
+
+  <section class="section media">
+    <!-- 🎬【历史相关图片/视频可放这里】 -->
+    <img src="caomaoportrait.jpg" alt="曹髦画像">
+  </section>
+</div>
+
+<footer>
+  CJ Cao · SJNA｜ 非官方 · 看看得了<br>
+  2026 1.30
+</footer>
+
+<script>
+const sections = document.querySelectorAll('.section');
+
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+
+      // 只震这两段（通过标题文字判断，不动HTML）
+      const title = entry.target.querySelector('h2');
+      if(title){
+        const text = title.innerText.trim();
+        if(text === '核心抗争' || text === '悲剧结局'){
+          entry.target.classList.add('shake');
+        }
+      }
+
+      observer.unobserve(entry.target);
+    }
+  });
+},{threshold:0.18});
+
+sections.forEach(s=>observer.observe(s));
+</script>
+
+</body>
+</html>
