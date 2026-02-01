@@ -1,0 +1,176 @@
+/* ===== 全局 ===== */
+body {
+    margin: 0;
+    font-family: "Helvetica", "Microsoft YaHei", sans-serif;
+    background: linear-gradient(to bottom, #0a0a0a, #111);
+    color: #fff;
+    overflow-x: hidden;
+}
+
+/* ===== 导航栏 ===== */
+nav {
+    background: rgba(0, 0, 0, 0.85);
+    padding: 14px 30px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 999;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+nav a {
+    color: #ffd700;
+    text-decoration: none;
+    margin-right: 25px;
+    font-size: 17px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    text-shadow: 0 0 12px #ffd700;
+    color: #fff;
+}
+
+/* ===== 英雄立绘 ===== */
+.hero-section {
+    height: 520px;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: #000;
+    border-bottom: 3px solid #444;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,215,0,0.2) 0%, transparent 70%);
+    animation: lightPulse 4s infinite alternate;
+}
+
+@keyframes lightPulse {
+    0% { transform: scale(0.9); opacity: 0.5; }
+    100% { transform: scale(1.1); opacity: 1; }
+}
+
+.hero-title {
+    font-size: 52px;
+    font-weight: bold;
+    text-shadow: 0 0 15px #ffd700, 0 0 25px #ffa500;
+    z-index: 2;
+}
+
+/* ===== 容器 ===== */
+.container {
+    padding: 140px 30px 50px;
+    max-width: 1000px;
+    margin: auto;
+    line-height: 1.8;
+    font-size: 18px;
+}
+
+/* ===== 标题 ===== */
+h2 {
+    margin-top: 50px;
+    border-left: 6px solid #c89b3c;
+    padding-left: 15px;
+    font-size: 30px;
+    color: #ffd700;
+}
+
+/* ===== 技能卡 ===== */
+.skill-card {
+    background: rgba(30, 20, 10, 0.6);
+    border: 2px solid #c89b3c;
+    border-radius: 12px;
+    padding: 15px 20px;
+    margin: 20px 0;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+    transition: transform 0.4s, box-shadow 0.4s;
+}
+
+.skill-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+}
+
+.skill-icon {
+    width: 50px;
+    vertical-align: middle;
+    margin-right: 12px;
+}
+
+.skill-anime {
+    width: 100%;
+    max-width: 450px;
+    margin-top: 12px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(255,215,0,0.3);
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+/* ===== 视频区 ===== */
+.video-preview iframe {
+    border: 3px solid #222;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255,215,0,0.3);
+}
+
+/* ===== 连招 & 实战图 ===== */
+.combo-diagram img, .strategy-art img, .history-img {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 0 25px rgba(255,215,0,0.3);
+    margin: 15px 0;
+}
+
+/* ===== SVG 进度条 ===== */
+.progress-circle {
+    width: 120px;
+    height: 120px;
+    position: relative;
+    margin: 20px auto;
+}
+
+.progress-circle svg circle {
+    fill: none;
+    stroke-width: 10;
+    stroke-linecap: round;
+}
+
+.progress-bg {
+    stroke: #333;
+}
+
+.progress-bar {
+    stroke: #ffd700;
+    stroke-dasharray: 314;
+    stroke-dashoffset: 314;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+    transition: stroke-dashoffset 1s ease-out;
+}
+
+/* ===== 光效动画 ===== */
+@keyframes glowPulse {
+    0% { filter: drop-shadow(0 0 4px #ffd700); }
+    50% { filter: drop-shadow(0 0 20px #ffb600); }
+    100% { filter: drop-shadow(0 0 4px #ffd700); }
+}
