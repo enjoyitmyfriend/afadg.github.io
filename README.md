@@ -81,8 +81,6 @@
 &nbsp;<br>
 <a href='https://afadg.cn/CarlWang/Homepage.html'>https://afadg.cn/CarlWang/Homepage.html</a>
 &nbsp;<br>
-<a href='https://afadg.cn/BruceHuang/Homepage.html'>https://afadg.cn/BruceHuang/Homepage.html</a>
-&nbsp;<br>
 <a href='https://afadg.cn/JustinLiu/Homepage.html'>https://afadg.cn/JustinLiu/Homepage.html</a>
 &nbsp;<br>
 <a href='https://afadg.cn/JackyChen/Homepage.html'>https://afadg.cn/JackyChen/Homepage.html</a>
