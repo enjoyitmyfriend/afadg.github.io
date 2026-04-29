@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>雪山摄影集 - 雪山摄影大师</title> 
+    <style>
+        /* 延续主页/作品页的基础样式，保证视觉统一 */
+        body {
+            font-family: "Microsoft YaHei", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .nav {
+            background-color: #444;
+            padding: 15px;
+            text-align: center;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+        .nav a:hover {
+            color: #b8d8ff;
+        }
+        .content {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            flex: 1;
+            margin-bottom: 0;
+        }
+        /* 大师介绍区域样式 */
+        .master-intro {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+        .master-avatar {
+            width: 220px;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+        .master-info {
+            flex: 1;
+        }
+        .master-name {
+            font-size: 24px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        .master-desc {
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+        .master-tag {
+            color: #1a73e8;
+            font-weight: bold;
+        }
+        /* 大师代表作品样式 */
+        .master-works-title {
+            font-size: 22px;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        .master-works {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        .master-work-item {
+            background-color: white;
+            padding: 15px;
+            border-radius: 6px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+        .master-work-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 12px;
+        }
+        .master-work-desc {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #666;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            margin-top: 0;
+            border-top: 1px solid #222;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>雪山摄影集 - 雪山摄影大师</h1>
+    </div>
+    <!-- 导航栏：保持和主页/作品页一致，实现三页自由切换 -->
+    <div class="nav">
+         <a href="Homepage.html">主页</a>
+	<a href="work.html">作品展示</a>
+        <a href="master.html">雪山摄影大师</a>
+    </div>
+
+    <div class="content">
+        <h2>雪山摄影界的传奇</h2>
+        <p style="color: #666; margin-bottom: 30px;">这些摄影师用数十年的时光，扎根雪域高原，用镜头诠释雪山的壮美与温柔，他们的作品成为雪山摄影的标杆。</p>
+        
+        <!-- 大师核心介绍 -->
+        <div class="master-intro">
+            <!-- 大师头像图片标记 -->
+            <img src="e.jpg" alt="雪山摄影大师 李元" class="master-avatar">
+            <div class="master-info">
+                <h3 class="master-name">李元 · 雪山摄影先驱</h3>
+                <p class="master-desc">李元先生是国内雪山摄影领域的殿堂级人物，1958年出生于四川康定，自青年时期便痴迷于青藏高原的雪山风光。他深耕雪山摄影40余年，足迹遍布喜马拉雅山脉、横断山脉的每一座知名雪峰，累计拍摄超过10万张雪山作品。</p>
+                <p class="master-desc"><span class="master-tag">摄影理念：</span>“雪山不是冰冷的石头，而是有生命的，镜头要捕捉的不是山的形状，而是山的呼吸。”</p>
+                <p class="master-desc">他的作品摒弃过度后期，以最真实的光影还原雪山本貌，曾获“中国自然摄影终身成就奖”，出版《雪域山河》《雪山纪行》等多部摄影集，是无数雪山摄影爱好者的精神导师。</p>
+            </div>
+        </div>
+
+        <!-- 大师代表作品 -->
+        <h3 class="master-works-title">李元大师代表作品</h3>
+        <div class="master-works">
+            <!-- 作品1 -->
+            <div class="master-work-item">
+                <img src="f.png" alt="珠峰日出" class="master-work-img">
+                <p class="master-work-desc">《珠峰日出》· 1998年拍摄于珠峰大本营<br>这是李元大师的经典之作，用中焦镜头捕捉到珠峰日出时，光影在雪坡上流动的瞬间，被誉为“最具温度的珠峰影像”。</p>
+            </div>
+            <!-- 作品2 -->
+            <div class="master-work-item">
+                <img src="g.jpeg" alt="南迦巴瓦峰" class="master-work-img">
+                <p class="master-work-desc">《南迦巴瓦 · 羞女峰》· 2005年拍摄于西藏林芝<br>耗时半个月等待，终于捕捉到南迦巴瓦峰全貌展露的瞬间，云雾缭绕的山峰与雅鲁藏布江相映，成为藏地摄影的经典画面。</p>
+            </div>
+            <!-- 作品3 -->
+            <div class="master-work-item">
+                <img src="h.jpeg" alt="四姑娘山" class="master-work-img">
+                <p class="master-work-desc">《四姑娘山 · 四季》· 2012年拍摄于四川阿坝<br>历时一年，记录四姑娘山春夏秋冬的不同样貌，四张照片拼接出雪山的四季轮回，展现出极致的自然韵律。</p>
+ </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>作者：yuqi liu 1.27 1154 清仁SJNA</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>雪山摄影集 - 主页</title> 
+    <style>
+        body {
+            font-family: "Microsoft YaHei", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+            /* 新增：让body占满整个屏幕高度，确保页脚能正确定位 */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .nav {
+            background-color: #444;
+            padding: 15px;
+            text-align: center;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+        .content {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            /* 新增：让内容区占满剩余空间，同时移除可能的底部间距 */
+            flex: 1;
+            margin-bottom: 0; /* 确保内容区底部无额外间距 */
+        }
+        .intro {
+            line-height: 1.8;
+            font-size: 16px;
+            margin-bottom: 40px;
+        }
+        .feature-img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            /* 关键修改：移除原本的50px上外边距，让页脚紧贴内容 */
+            margin-top: 0;
+            /* 可选：添加1px上边框，让页脚和内容区分隔更清晰 */
+            border-top: 1px solid #222;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>雪山摄影集 - 主页</h1>
+    </div>
+    <div class="nav">
+        <a href="Homepage.html">主页</a>
+	<a href="work.html">作品展示</a>
+        <a href="master.html">雪山摄影大师</a>
+    </div>
+
+    <div class="content">
+        <h2>雪山摄影集</h2>
+        <div class="intro">
+            <p>雪岭横空，云涛漫顶，每一座雪峰都藏着天地的缄默与磅礴。镜头凝住的不只是皑雪覆峰的澄澈，还有光风掠过冰岩的细碎纹路，云影漫过山脊的温柔轨迹，以及雪域独有的清寂与辽阔。那些在高海拔处定格的瞬间，是山的风骨，是雪的诗意，更是自然最纯粹的告白。</p>
+            <p>在这里，你可以了解很多美丽的雪山，深深爱上它们。</p>
+        </div>
+
+        <h3>作品预览</h3>
+        <a href="https://www.gettyimages.co.jp/%E5%86%99%E7%9C%9F/%E6%A2%85%E9%87%8C%E9%9B%AA%E5%B1%B1">梅里雪山</a>
+    </div>
+
+    <div class="footer">
+        <p>作者：yuqi liu 1.27 1154 清仁SJNA</p>
+    </div>
+</body>
+</html>

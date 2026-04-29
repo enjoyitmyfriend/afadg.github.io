@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>雪山摄影集 - 作品展示</title> 
+    <style>
+        /* 保持和主页一致的基础样式，确保视觉统一 */
+        body {
+            font-family: "Microsoft YaHei", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .nav {
+            background-color: #444;
+            padding: 15px;
+            text-align: center;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+        /* 鼠标悬停时链接变色，提升交互体验 */
+        .nav a:hover {
+            color: #b8d8ff;
+        }
+        .content {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            flex: 1;
+            margin-bottom: 0;
+        }
+        /* 作品展示区布局 - 两列网格，适配不同屏幕 */
+        .works-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .work-item {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .work-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover; /* 保持图片比例，不拉伸 */
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+        .work-title {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+        .work-desc {
+            line-height: 1.7;
+            color: #555;
+            font-size: 15px;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            margin-top: 0;
+            border-top: 1px solid #222;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>雪山摄影集 - 作品展示</h1>
+    </div>
+    <!-- 导航栏：和主页保持一致，确保切换顺畅 -->
+    <div class="nav">
+        <!-- 替换成你主页的实际文件路径 -->
+        <a href="Homepage.html">主页</a>
+	<a href="work.html">作品展示</a>
+        <a href="master.html">雪山摄影大师</a>
+    </div>
+
+    <div class="content">
+        <h2>雪山摄影精选</h2>
+        <p style="color: #666; margin-bottom: 25px;">每一幅作品都记录了雪山不同时刻的壮美，从晨光微熹到星河漫天，从巍峨主峰到山间细雪。</p>
+        
+        <!-- 作品展示区域 -->
+        <div class="works-container">
+            <!-- 作品1：梅里雪山 -->
+            <div class="work-item">
+                <h3 class="work-title">梅里雪山 · 日照金山</h3>
+                <!-- 图片路径标记，替换为实际图片地址 -->
+                <img src="a.jpeg" alt="梅里雪山日照金山" class="work-img">
+                <p class="work-desc">拍摄于云南德钦，清晨的第一缕阳光洒在卡瓦博格峰上，整座雪山被镀上一层金辉，是藏区最神圣的自然景观之一。拍摄时间：2024年1月，海拔3400米。</p>
+            </div>
+
+            <!-- 作品2：贡嘎雪山 -->
+            <div class="work-item">
+                <h3 class="work-title">贡嘎雪山 · 星河之下</h3>
+                <!-- 图片路径标记，替换为实际图片地址 -->
+                <img src="b.jpeg" alt="贡嘎雪山星河之下" class="work-img">
+                <p class="work-desc">拍摄于四川子梅垭口，深夜的贡嘎主峰在星河的映衬下更显巍峨，星空与雪山交织出极致的静谧与辽阔。拍摄时间：2023年10月，使用广角镜头长曝光拍摄。</p>
+            </div>
+
+            <!-- 作品3：冈仁波齐 -->
+            <div class="work-item">
+                <h3 class="work-title">冈仁波齐 · 雪域圣山</h3>
+                <!-- 图片路径标记，替换为实际图片地址 -->
+                <img src="c.avif" alt="冈仁波齐雪域圣山" class="work-img">
+                <p class="work-desc">拍摄于西藏阿里地区，冈仁波齐作为藏传佛教的神山，终年积雪覆盖，山体的纹路如天然的雕刻，展现出独有的庄严与神圣。拍摄时间：2023年8月。</p>
+            </div>
+
+            <!-- 作品4：玉龙雪山 -->
+            <div class="work-item">
+                <h3 class="work-title">玉龙雪山 · 云绕山腰</h3>
+                <!-- 图片路径标记，替换为实际图片地址 -->
+                <img src="d.webp" alt="玉龙雪山云绕山腰" class="work-img">
+                <p class="work-desc">拍摄于云南丽江，夏季的玉龙雪山少了几分凛冽，云雾缠绕在山腰，与山下的蓝月谷相映成趣，刚柔并济的美展现得淋漓尽致。拍摄时间：2024年6月。</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>作者：yuqi liu 1.27 1154 清仁SJNA</p>
+    </div>
+</body>
+</html>
