@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>👤 关于米津玄师</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            color: #333;
+            font-family: "Noto Sans SC", sans-serif;
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.7;
+            position: relative;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            z-index: -1;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .content-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 50px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        h1 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 3em;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .section {
+            margin: 40px 0;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .section p {
+            font-size: 1.15em;
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.9;
+            text-align: justify;
+        }
+        
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            margin: 40px 0;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 20px;
+        }
+        
+        .text-part h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .text-part p {
+            font-size: 1.1em;
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        .quote {
+            font-style: italic;
+            color: #764ba2;
+            font-size: 1.2em;
+            padding: 20px;
+            background: rgba(118, 75, 162, 0.1);
+            border-left: 4px solid #764ba2;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .image-part img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            border: 3px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .image-part img:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+        
+        .section img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            margin: 25px 0;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            transition: transform 0.5s ease;
+            border: 3px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .section img:hover {
+            transform: scale(1.02);
+        }
+        
+        .section h2 {
+            color: #667eea;
+            font-size: 2.2em;
+            margin: 30px 0 20px;
+            font-weight: 600;
+        }
+        
+        a.back {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 30px;
+            color: white;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+        
+        a.back:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            color: #777;
+            font-size: 0.95em;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+	nav {
+            margin: 50px 0;
+            padding: 0 20px;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: white;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+        
+        nav a::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        nav a:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        nav a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+        }
+        
+        nav a span {
+            position: relative;
+            z-index: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .content-card {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2.2em;
+            }
+            
+            .two-col {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .text-part h2 {
+                font-size: 1.6em;
+            }
+            
+            .section h2 {
+                font-size: 1.8em;
+            }
+        }
+	
+    </style>
+	</head>
+<body>
+	<div class="container">
+	<div class="content-card">
+		<h1>👤 米津玄师：一人乐队，万千世界</h1>
+            
+	<div class="section">
+		<p>
+			1991年生于日本德岛县，自幼因色觉障碍被同学孤立，却在绘画与音乐中找到出口。
+			2009年以虚拟歌手"初音未来"为载体，用"ハチ"之名上传《Matryoshka》等神曲，
+		迅速成为Niconico动画传奇创作者。
+		</p>
+		<p>
+		2012年转型真人歌手，首张专辑《diorama》即获日本金唱片大奖。
+		他坚持"一人完成所有环节"——词、曲、编、唱、绘、导，被誉为"现代宫崎骏+椎名林檎"的结合体。
+		</p>
+		</div>
+
+	<div class="two-col">
+	<div class="text-part">
+		  <!-- 
+            michi5.jpg 展现“创作者孤独而专注”的一面，
+            michi6.jpg 则展示“作品如何被世界温柔接住”。
+            一内一外，构成完整人格画像。
+            小屏时自动变为上下布局，确保可读性。
+            -->
+		<h2>🎨 创作日常</h2>
+			<p>
+			他的工作室堆满画稿与合成器。即使成名后，仍亲手绘制每一张专辑封面。
+			《Lemon》的白色衬衫、《KICK BACK》的火焰字体，皆出自他手。
+			</p>
+			<div class="quote">
+			 "我不想被定义。我只是在用我能的方式，把心里的声音变成形状。" —— 米津玄师
+		</div>
+		</div>
+
+		<div class="image-part">
+		<img src="image/michi5.jpg" alt="米津玄师在录音室创作">
+		</div>
+		</div>
+		<div class="section">
+		<h2>❤️ 与世界的共鸣</h2>
+		<p>
+			他的音乐跨越语言，《Lemon》在Spotify全球播放超10亿次。
+			每场演唱会，粉丝都会举起写有歌词的灯牌，形成一片光之海。
+		</p>
+		<img src="image/michi6.jpg" alt="粉丝举灯牌应援现场">
+		</div>
+  	
+	
+		
+	</div>
+	<nav>
+		<ul>
+			<li><a href="bio.html"><span>👤 关于他</span></a></li>
+			<li><a href="works.html"><span>💿 作品宇宙</span></a></li>
+			<li><a href="index.html"><span>写真同人</span></a></li>
+			<li><a href="homepage.html"><span>返回首页</span></a></li>
+			
+			
+		</ul>
+	</nav>
+	<footer>
+		<p>作者：Anxelia钟祉瑜 | 日期：2026年1月22日 | 学校：清仁sjna</p>
+		</footer>
+	</div>
+</body>
+</html>
