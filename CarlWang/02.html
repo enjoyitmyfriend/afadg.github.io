@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS:GO地图 - 经典竞技战场</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --csgo-orange: #f7931a;
+            --csgo-dark: #121212;
+            --csgo-gray: #1e1e1e;
+            --csgo-light: #2d2d2d;
+            --csgo-text: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--csgo-dark);
+            color: var(--csgo-text);
+            line-height: 1.6;
+            padding-top: 70px;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        header {
+            background: rgba(18, 18, 18, 0.95);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            padding: 15px 0;
+            border-bottom: 2px solid var(--csgo-orange);
+            top: 0;
+            left: 0;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            color: var(--csgo-orange);
+            font-size: 2.5rem;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .logo-text span {
+            color: var(--csgo-orange);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            padding: 5px 10px;
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            background-color: var(--csgo-orange);
+            color: var(--csgo-dark);
+        }
+
+        nav a.current {
+            font-weight: 900;
+            border-bottom: 2px solid var(--csgo-orange);
+        }
+
+        .steam-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: #171a21;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 3px;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            margin-left: 20px;
+            border: 1px solid #66c0f4;
+        }
+
+        .steam-btn:hover {
+            background-color: #66c0f4;
+            color: #171a21;
+            transform: translateY(-3px);
+        }
+
+        .steam-btn i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: white;
+        }
+
+        .page-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('5.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(247, 147, 26, 0.7);
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 3px;
+            background-color: var(--csgo-orange);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .map-categories {
+            background-color: var(--csgo-dark);
+        }
+
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .category-btn {
+            background-color: var(--csgo-light);
+            color: var(--csgo-text);
+            border: none;
+            padding: 12px 25px;
+            cursor: pointer;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 500;
+            transition: all 0.3s;
+            border-radius: 3px;
+            font-size: 1rem;
+        }
+
+        .category-btn:hover, .category-btn.active {
+            background-color: var(--csgo-orange);
+            color: var(--csgo-dark);
+        }
+
+        .map-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .map-card {
+            background-color: var(--csgo-light);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-bottom: 4px solid var(--csgo-orange);
+        }
+
+        .map-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .map-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .map-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .map-card:hover .map-image img {
+            transform: scale(1.1);
+        }
+
+        .map-type {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--csgo-orange);
+            color: var(--csgo-dark);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 2;
+        }
+
+        .map-info {
+            padding: 25px;
+        }
+
+        .map-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .map-difficulty {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .difficulty-label {
+            margin-right: 10px;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        .difficulty-stars {
+            color: var(--csgo-orange);
+        }
+
+        .map-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .feature-tag {
+            background-color: rgba(247, 147, 26, 0.2);
+            color: var(--csgo-orange);
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+        }
+
+        .tactics {
+            background-color: var(--csgo-gray);
+        }
+
+        .tactics-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .tactic-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+            background-color: var(--csgo-light);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .tactic-image {
+            flex: 1;
+            min-width: 300px;
+            height: 250px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tactic-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .tactic-text {
+            flex: 2;
+            padding: 30px;
+        }
+
+        .tactic-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--csgo-orange);
+        }
+
+        footer {
+            background-color: #0a0a0a;
+            padding: 60px 0 30px;
+            border-top: 2px solid var(--csgo-orange);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--csgo-orange);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--csgo-text);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--csgo-orange);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--csgo-light);
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 992px) {
+            .tactic-item {
+                flex-direction: column;
+            }
+            
+            .tactic-image {
+                width: 100%;
+                min-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 60px;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--csgo-gray);
+                flex-direction: column;
+                padding: 20px;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .map-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .steam-btn {
+                margin-left: 10px;
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .category-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .category-btn {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-crosshairs"></i>
+                <div class="logo-text">CS<span>GO</span></div>
+            </div>
+            
+            <div class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="01.html">Homepage</a></li>  <!-- 修改这里 -->
+                    <li><a href="02.html" class="current">地图</a></li>
+                    <li><a href="03.html">武器</a></li>
+                    <li><a href="04.html">赛事</a></li>
+                    <li><a href="https://store.steampowered.com/app/730/CounterStrike_Global_Offensive/" target="_blank" class="steam-btn">
+                        <i class="fab fa-steam"></i>下载CS2
+                    </a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>CS:GO 竞技地图</h1>
+            <p>探索CS:GO中最具标志性的竞技地图，每张地图都有独特的战术布局和游戏风格。从经典的沙漠II到现代的荒漠迷城，掌握地图是成为高手的必经之路。</p>
+        </div>
+    </section>
+
+    <section class="map-categories">
+        <div class="container">
+            <div class="section-title">
+                <h2>地图分类</h2>
+            </div>
+            
+            <div class="category-tabs">
+                <button class="category-btn active" data-category="all">所有地图</button>
+                <button class="category-btn" data-category="defusal">炸弹拆除</button>
+                <button class="category-btn" data-category="hostage">人质救援</button>
+                <button class="category-btn" data-category="competitive">竞技地图</button>
+            </div>
+            
+            <div class="map-grid" id="mapContainer">
+                <!-- 地图卡片将通过JavaScript动态生成 -->
+            </div>
+        </div>
+    </section>
+
+    <section class="tactics">
+        <div class="container">
+            <div class="section-title">
+                <h2>地图战术分析</h2>
+            </div>
+            
+            <div class="tactics-content">
+                <div class="tactic-item">
+                    <div class="tactic-image">
+                        <img src="11.jpg" alt="地图控制权">
+                    </div>
+                    <div class="tactic-text">
+                        <h3>地图控制权</h3>
+                        <p>在CS:GO中，地图控制权是获胜的关键。控制关键区域如中路、连接通道和包点入口可以限制对手的行动自由，为己方创造优势。团队需要协调推进，利用烟雾弹、闪光弹和燃烧弹来控制和分割地图。</p>
+                    </div>
+                </div>
+                
+                <div class="tactic-item">
+                    <div class="tactic-text">
+                        <h3>经济与地图选择</h3>
+                        <p>地图选择与经济管理密切相关。某些地图更适合经济局翻盘，而有些地图则对装备要求更高。了解每张地图的武器性价比和战术选择可以帮助团队在经济劣势时找到翻盘机会。</p>
+                    </div>
+                    <div class="tactic-image">
+                        <img src="12.jpg" alt="经济管理">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>地图资源</h3>
+                    <p>CS:GO地图由全球社区设计师和Valve官方共同创建。每张地图都经过严格的平衡性测试，确保竞技公平性。玩家还可以在创意工坊下载社区制作的地图。</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>快速导航</h3>
+                    <ul class="footer-links">
+                        <li><a href="01.html">返回Homepage</a></li>  <!-- 修改这里 -->
+                        <li><a href="03.html">武器系统</a></li>
+                        <li><a href="04.html">电竞赛事</a></li>
+                        <li><a href="https://steamcommunity.com/workshop/browse/?appid=730" target="_blank">创意工坊地图</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>学习资源</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://www.youtube.com/results?search_query=csgo+map+guide" target="_blank">地图教学视频</a></li>
+                        <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=419173046" target="_blank">烟闪火教学</a></li>
+                        <li><a href="https://www.hltv.org/" target="_blank">职业比赛战术分析</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>wangjiahao 法拉古特东莞校区 2026.1.30</p>  <!-- 修改这里 -->
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            const mobileToggle = document.getElementById('mobileToggle');
+            const navMenu = document.getElementById('navMenu');
+            
+            if (mobileToggle && navMenu) {
+                mobileToggle.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                });
+                
+                const navLinks = document.querySelectorAll('nav a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        navMenu.classList.remove('active');
+                    });
+                });
+            }
+            
+            const mapsData = [
+                {
+                    id: 1,
+                    name: "沙漠 II",
+                    type: "defusal",
+                    image: "6.jpg",
+                    difficulty: 3,
+                    description: "CS系列最具标志性的地图之一，以中东地区为背景。平衡性极佳，适合各种战术风格。",
+                    features: ["经典地图", "平衡性强", "适合狙击"]
+                },
+                {
+                    id: 2,
+                    name: "炼狱小镇",
+                    type: "defusal",
+                    image: "7.jpg",
+                    difficulty: 4,
+                    description: "以意大利小镇为背景，地图紧凑战斗节奏快，需要快速的决策和精准的枪法。",
+                    features: ["快节奏", "近距离战斗", "投掷物关键"]
+                },
+                {
+                    id: 3,
+                    name: "荒漠迷城",
+                    type: "competitive",
+                    image: "8.jpg",
+                    difficulty: 5,
+                    description: "现代竞技地图的代表，结构复杂战术多样性丰富，需要高度的团队配合。",
+                    features: ["战术复杂", "团队配合", "多路线进攻"]
+                },
+                {
+                    id: 4,
+                    name: "核子危机",
+                    type: "defusal",
+                    image: "9.jpg",
+                    difficulty: 4,
+                    description: "以核电站为背景，恐怖分子需要摧毁核废料罐。地图结构复杂，适合各种战术。",
+                    features: ["多层结构", "室内战斗", "战术多样"]
+                },
+                {
+                    id: 5,
+                    name: "办公室",
+                    type: "hostage",
+                    image: "10.jpg",
+                    difficulty: 2,
+                    description: "经典的人质救援地图，反恐精英需要突入办公室建筑营救人质。",
+                    features: ["人质模式", "室内战斗", "近距离"]
+                },
+                {
+                    id: 6,
+                    name: "列车停放站",
+                    type: "competitive",
+                    image: "13.jpg",
+                    difficulty: 5,
+                    description: "大型地图，以火车调车场为背景，需要优秀的狙击手和团队战术执行。",
+                    features: ["大型地图", "狙击优势", "长距离交战"]
+                }
+            ];
+            
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            const mapContainer = document.getElementById('mapContainer');
+            
+            displayMaps('all');
+            
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    categoryBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const category = this.getAttribute('data-category');
+                    displayMaps(category);
+                });
+            });
+            
+            function displayMaps(category) {
+                const filteredMaps = category === 'all' 
+                    ? mapsData 
+                    : mapsData.filter(map => map.type === category);
+                
+                mapContainer.innerHTML = '';
+                
+                filteredMaps.forEach(map => {
+                    const mapCard = document.createElement('div');
+                    mapCard.className = 'map-card';
+                    
+                    let starsHtml = '';
+                    for (let i = 1; i <= 5; i++) {
+                        starsHtml += i <= map.difficulty 
+                            ? '<i class="fas fa-star"></i>' 
+                            : '<i class="far fa-star"></i>';
+                    }
+                    
+                    const featuresHtml = map.features.map(feature => 
+                        `<span class="feature-tag">${feature}</span>`
+                    ).join('');
+                    
+                    const typeName = getTypeName(map.type);
+                    
+                    mapCard.innerHTML = `
+                        <div class="map-image">
+                            <img src="${map.image}" alt="${map.name}">
+                            <div class="map-type">${typeName}</div>
+                        </div>
+                        <div class="map-info">
+                            <h3>${map.name}</h3>
+                            <div class="map-difficulty">
+                                <span class="difficulty-label">难度:</span>
+                                <div class="difficulty-stars">${starsHtml}</div>
+                            </div>
+                            <p>${map.description}</p>
+                            <div class="map-features">
+                                ${featuresHtml}
+                            </div>
+                        </div>
+                    `;
+                    
+                    mapContainer.appendChild(mapCard);
+                });
+            }
+            
+            function getTypeName(type) {
+                const typeNames = {
+                    'defusal': '炸弹拆除',
+                    'hostage': '人质救援',
+                    'competitive': '竞技地图'
+                };
+                return typeNames[type] || type;
+            }
+            
+            console.log('%cCS:GO地图页面加载完成!', 'color: #f7931a; font-size: 18px; font-weight: bold;');
+        });
+    </script>
+</body>
+</html>

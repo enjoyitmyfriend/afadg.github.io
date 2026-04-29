@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS:GO武器 - 装备与战术</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --csgo-orange: #f7931a;
+            --csgo-dark: #121212;
+            --csgo-gray: #1e1e1e;
+            --csgo-light: #2d2d2d;
+            --csgo-text: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--csgo-dark);
+            color: var(--csgo-text);
+            line-height: 1.6;
+            padding-top: 70px;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        header {
+            background: rgba(18, 18, 18, 0.95);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            padding: 15px 0;
+            border-bottom: 2px solid var(--csgo-orange);
+            top: 0;
+            left: 0;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            color: var(--csgo-orange);
+            font-size: 2.5rem;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .logo-text span {
+            color: var(--csgo-orange);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            padding: 5px 10px;
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            background-color: var(--csgo-orange);
+            color: var(--csgo-dark);
+        }
+
+        nav a.current {
+            font-weight: 900;
+            border-bottom: 2px solid var(--csgo-orange);
+        }
+
+        .steam-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: #171a21;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 3px;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            margin-left: 20px;
+            border: 1px solid #66c0f4;
+        }
+
+        .steam-btn:hover {
+            background-color: #66c0f4;
+            color: #171a21;
+            transform: translateY(-3px);
+        }
+
+        .steam-btn i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: white;
+        }
+
+        .page-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('14.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(247, 147, 26, 0.7);
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 3px;
+            background-color: var(--csgo-orange);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .weapon-categories {
+            background-color: var(--csgo-dark);
+        }
+
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .category-btn {
+            background-color: var(--csgo-light);
+            color: var(--csgo-text);
+            border: none;
+            padding: 12px 25px;
+            cursor: pointer;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 500;
+            transition: all 0.3s;
+            border-radius: 3px;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .category-btn:hover, .category-btn.active {
+            background-color: var(--csgo-orange);
+            color: var(--csgo-dark);
+        }
+
+        .category-btn i {
+            font-size: 1.2rem;
+        }
+
+        .weapon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .weapon-card {
+            background-color: var(--csgo-light);
+            border-radius: 8px;
+            padding: 25px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid var(--csgo-orange);
+        }
+
+        .weapon-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .weapon-image {
+            height: 150px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+
+        .weapon-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .weapon-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: white;
+            text-align: center;
+        }
+
+        .weapon-price {
+            display: inline-block;
+            background-color: rgba(247, 147, 26, 0.2);
+            color: var(--csgo-orange);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .weapon-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .stat-item {
+            text-align: center;
+            flex: 1;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #aaa;
+            margin-bottom: 5px;
+        }
+
+        .stat-value {
+            font-size: 1rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .stat-bar {
+            height: 5px;
+            background-color: #333;
+            border-radius: 3px;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+
+        .stat-fill {
+            height: 100%;
+            background-color: var(--csgo-orange);
+            border-radius: 3px;
+        }
+
+        .weapon-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .feature-tag {
+            background-color: rgba(247, 147, 26, 0.1);
+            color: var(--csgo-orange);
+            padding: 4px 10px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+        }
+
+        .weapon-comparison {
+            background-color: var(--csgo-gray);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .comparison-table th {
+            background-color: var(--csgo-light);
+            padding: 15px;
+            text-align: left;
+            color: var(--csgo-orange);
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .comparison-table tr:hover {
+            background-color: rgba(247, 147, 26, 0.05);
+        }
+
+        .weapon-name-cell {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .weapon-name-cell i {
+            color: var(--csgo-orange);
+            font-size: 1.2rem;
+        }
+
+        .economy-management {
+            background-color: var(--csgo-dark);
+        }
+
+        .economy-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .economy-tip {
+            background-color: var(--csgo-light);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--csgo-orange);
+        }
+
+        .economy-tip h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--csgo-orange);
+        }
+
+        .economy-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .economy-stat {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--csgo-light);
+            border-radius: 8px;
+        }
+
+        .economy-stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--csgo-orange);
+            margin-bottom: 10px;
+        }
+
+        footer {
+            background-color: #0a0a0a;
+            padding: 60px 0 30px;
+            border-top: 2px solid var(--csgo-orange);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--csgo-orange);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--csgo-text);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--csgo-orange);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--csgo-light);
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 992px) {
+            .weapon-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .economy-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 60px;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--csgo-gray);
+                flex-direction: column;
+                padding: 20px;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .category-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .category-btn {
+                width: 80%;
+            }
+            
+            .steam-btn {
+                margin-left: 10px;
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .comparison-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .weapon-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .economy-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-crosshairs"></i>
+                <div class="logo-text">CS<span>GO</span></div>
+            </div>
+            
+            <div class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="01.html">Homepage</a></li>  <!-- 修改这里 -->
+                    <li><a href="02.html">地图</a></li>
+                    <li><a href="03.html" class="current">武器</a></li>
+                    <li><a href="04.html">赛事</a></li>
+                    <li><a href="https://store.steampowered.com/app/730/CounterStrike_Global_Offensive/" target="_blank" class="steam-btn">
+                        <i class="fab fa-steam"></i>下载CS2
+                    </a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>CS:GO 武器系统</h1>
+            <p>深入了解CS:GO中丰富的武器库，从手枪到狙击枪，每种武器都有其独特的特性和战术用途。掌握武器特性是提升游戏水平的关键。</p>
+        </div>
+    </section>
+
+    <section class="weapon-categories">
+        <div class="container">
+            <div class="section-title">
+                <h2>武器分类</h2>
+            </div>
+            
+            <div class="category-tabs">
+                <button class="category-btn active" data-category="pistols">
+                    <i class="fas fa-gun"></i>手枪
+                </button>
+                <button class="category-btn" data-category="smgs">
+                    <i class="fas fa-gun"></i>微型冲锋枪
+                </button>
+                <button class="category-btn" data-category="rifles">
+                    <i class="fas fa-gun"></i>步枪
+                </button>
+                <button class="category-btn" data-category="heavy">
+                    <i class="fas fa-gun"></i>重型武器
+                </button>
+            </div>
+            
+            <div class="weapon-grid" id="weaponContainer">
+                <!-- 武器卡片将通过JavaScript动态生成 -->
+            </div>
+        </div>
+    </section>
+
+    <section class="weapon-comparison">
+        <div class="container">
+            <div class="section-title">
+                <h2>武器对比</h2>
+            </div>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>武器名称</th>
+                        <th>价格</th>
+                        <th>伤害</th>
+                        <th>射速</th>
+                        <th>精度</th>
+                        <th>穿透力</th>
+                    </tr>
+                </thead>
+                <tbody id="comparisonBody">
+                    <!-- 武器比较数据将通过JavaScript动态生成 -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="economy-management">
+        <div class="container">
+            <div class="section-title">
+                <h2>经济管理策略</h2>
+            </div>
+            
+            <div class="economy-content">
+                <div class="economy-tip">
+                    <h3>武器购买策略</h3>
+                    <p>在CS:GO中，经济管理是获胜的关键。根据团队经济状况选择合适的武器购买策略：全枪全弹局、半买局或经济局。合理的经济分配可以确保团队在关键回合拥有装备优势。</p>
+                </div>
+                
+                <div class="economy-stats">
+                    <div class="economy-stat">
+                        <div class="economy-stat-number">$800</div>
+                        <p>初始资金</p>
+                    </div>
+                    <div class="economy-stat">
+                        <div class="economy-stat-number">$1400</div>
+                        <p>手枪局失败补偿</p>
+                    </div>
+                    <div class="economy-stat">
+                        <div class="economy-stat-number">$3400</div>
+                        <p>AK-47价格</p>
+                    </div>
+                    <div class="economy-stat">
+                        <div class="economy-stat-number">$3100</div>
+                        <p>M4A4价格</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>武器资源</h3>
+                    <p>CS:GO拥有超过30种不同的武器，每种武器都有独特的伤害模型、后坐力模式和价格。了解每种武器的特性是成为高手的关键。</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>快速导航</h3>
+                    <ul class="footer-links">
+                        <li><a href="01.html">返回Homepage</a></li>  <!-- 修改这里 -->
+                        <li><a href="02.html">地图介绍</a></li>
+                        <li><a href="04.html">电竞赛事</a></li>
+                        <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=419173046" target="_blank">武器训练地图</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>训练资源</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://www.youtube.com/results?search_query=csgo+weapon+guide" target="_blank">武器教学视频</a></li>
+                        <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=419173046" target="_blank">后坐力控制训练</a></li>
+                        <li><a href="https://www.aimlab.gg/" target="_blank">瞄准训练软件</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>wangjiahao 法拉古特东莞校区 2026.1.30</p>  <!-- 修改这里 -->
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            const mobileToggle = document.getElementById('mobileToggle');
+            const navMenu = document.getElementById('navMenu');
+            
+            if (mobileToggle && navMenu) {
+                mobileToggle.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                });
+                
+                const navLinks = document.querySelectorAll('nav a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        navMenu.classList.remove('active');
+                    });
+                });
+            }
+            
+            const weaponsData = {
+                pistols: [
+                    {
+                        name: "格洛克-18",
+                        price: "$200",
+                        damage: 75,
+                        fireRate: 85,
+                        accuracy: 60,
+                        penetration: 55,
+                        image: "15.jpg",
+                        description: "恐怖分子初始手枪，全自动模式适合近距离战斗。",
+                        features: ["全自动模式", "高射速", "经济局首选"]
+                    },
+                    {
+                        name: "USP消音版",
+                        price: "$200",
+                        damage: 70,
+                        fireRate: 65,
+                        accuracy: 85,
+                        penetration: 60,
+                        image: "16.jpg",
+                        description: "反恐精英初始手枪，消音器减少后坐力和枪声。",
+                        features: ["消音器", "高精度", "隐蔽性强"]
+                    },
+                    {
+                        name: "沙漠之鹰",
+                        price: "$700",
+                        damage: 95,
+                        fireRate: 40,
+                        accuracy: 70,
+                        penetration: 90,
+                        image: "17.jpg",
+                        description: "高威力手枪，一枪可击杀无头盔敌人，但后坐力大。",
+                        features: ["高伤害", "穿甲强", "高手向武器"]
+                    },
+                    {
+                        name: "P250",
+                        price: "$300",
+                        damage: 80,
+                        fireRate: 70,
+                        accuracy: 75,
+                        penetration: 70,
+                        image: "18.jpg",
+                        description: "性价比高的手枪，适合经济局使用。",
+                        features: ["性价比高", "平衡性好", "经济局神器"]
+                    }
+                ],
+                smgs: [
+                    {
+                        name: "MAC-10",
+                        price: "$1050",
+                        damage: 65,
+                        fireRate: 95,
+                        accuracy: 50,
+                        penetration: 60,
+                        image: "19.jpg",
+                        description: "恐怖分子专属微型冲锋枪，射速快但精度低。",
+                        features: ["极高射速", "移动射击", "经济局翻盘"]
+                    },
+                    {
+                        name: "MP9",
+                        price: "$1250",
+                        damage: 60,
+                        fireRate: 90,
+                        accuracy: 65,
+                        penetration: 55,
+                        image: "20.jpg",
+                        description: "反恐精英专属微型冲锋枪，射速极快，适合近距离战斗。",
+                        features: ["快速换弹", "高机动性", "近距离优势"]
+                    },
+                    {
+                        name: "UMP-45",
+                        price: "$1200",
+                        damage: 85,
+                        fireRate: 70,
+                        accuracy: 75,
+                        penetration: 75,
+                        image: "21.jpg",
+                        description: "性价比高的微型冲锋枪，适合各种距离的战斗。",
+                        features: ["高伤害", "穿甲强", "全能型"]
+                    },
+                    {
+                        name: "PP-野牛",
+                        price: "$1400",
+                        damage: 55,
+                        fireRate: 85,
+                        accuracy: 60,
+                        penetration: 50,
+                        image: "22.jpg",
+                        description: "弹容量大，适合压制敌人，但伤害较低。",
+                        features: ["超大弹容", "压制火力", "持续输出"]
+                    }
+                ],
+                rifles: [
+                    {
+                        name: "AK-47",
+                        price: "$2700",
+                        damage: 95,
+                        fireRate: 75,
+                        accuracy: 70,
+                        penetration: 90,
+                        image: "23.jpg",
+                        description: "恐怖分子主力步枪，高伤害但后坐力较大。",
+                        features: ["一枪爆头", "高伤害", "T方主力"]
+                    },
+                    {
+                        name: "M4A4",
+                        price: "$3100",
+                        damage: 85,
+                        fireRate: 80,
+                        accuracy: 85,
+                        penetration: 85,
+                        image: "24.jpg",
+                        description: "反恐精英主力步枪，精度高但伤害略低于AK-47。",
+                        features: ["高精度", "低后坐力", "CT方主力"]
+                    },
+                    {
+                        name: "AWP",
+                        price: "$4750",
+                        damage: 100,
+                        fireRate: 20,
+                        accuracy: 95,
+                        penetration: 100,
+                        image: "25.jpg",
+                        description: "狙击步枪，一枪可击杀任何部位，但移动缓慢。",
+                        features: ["一枪必杀", "远程优势", "高经济成本"]
+                    },
+                    {
+                        name: "FAMAS",
+                        price: "$2250",
+                        damage: 75,
+                        fireRate: 75,
+                        accuracy: 80,
+                        penetration: 75,
+                        image: "26.jpg",
+                        description: "反恐精英经济型步枪，有全自动和三连发模式。",
+                        features: ["三连发模式", "性价比高", "经济局选择"]
+                    }
+                ],
+                heavy: [
+                    {
+                        name: "Nova",
+                        price: "$1050",
+                        damage: 90,
+                        fireRate: 40,
+                        accuracy: 60,
+                        penetration: 70,
+                        image: "27.jpg",
+                        description: "泵动式霰弹枪，近距离威力大但射速慢。",
+                        features: ["近距离高伤", "经济实惠", "防守利器"]
+                    },
+                    {
+                        name: "XM1014",
+                        price: "$2000",
+                        damage: 85,
+                        fireRate: 75,
+                        accuracy: 55,
+                        penetration: 65,
+                        image: "28.jpg",
+                        description: "半自动霰弹枪，射速快但价格昂贵。",
+                        features: ["半自动", "高射速", "进攻利器"]
+                    },
+                    {
+                        name: "M249",
+                        price: "$5200",
+                        damage: 80,
+                        fireRate: 85,
+                        accuracy: 65,
+                        penetration: 85,
+                        image: "29.jpg",
+                        description: "轻机枪，弹容量大但价格昂贵，移动缓慢。",
+                        features: ["超大弹容", "压制火力", "娱乐性强"]
+                    },
+                    {
+                        name: "Negev",
+                        price: "$1700",
+                        damage: 85,
+                        fireRate: 90,
+                        accuracy: 40,
+                        penetration: 80,
+                        image: "30.jpg",
+                        description: "轻机枪，初始精度低但持续射击后变得稳定。",
+                        features: ["持续射击", "越打越准", "压制武器"]
+                    }
+                ]
+            };
+            
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            const weaponContainer = document.getElementById('weaponContainer');
+            const comparisonBody = document.getElementById('comparisonBody');
+            
+            displayWeapons('pistols');
+            updateComparisonTable('pistols');
+            
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    categoryBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const category = this.getAttribute('data-category');
+                    displayWeapons(category);
+                    updateComparisonTable(category);
+                });
+            });
+            
+            function displayWeapons(category) {
+                const weapons = weaponsData[category];
+                
+                weaponContainer.innerHTML = '';
+                
+                weapons.forEach(weapon => {
+                    const weaponCard = document.createElement('div');
+                    weaponCard.className = 'weapon-card';
+                    
+                    let iconClass = 'fas fa-gun';
+                    
+                    const featuresHtml = weapon.features.map(feature => 
+                        `<span class="feature-tag">${feature}</span>`
+                    ).join('');
+                    
+                    weaponCard.innerHTML = `
+                        <div class="weapon-image">
+                            <img src="${weapon.image}" alt="${weapon.name}">
+                        </div>
+                        <div class="weapon-info">
+                            <h3>${weapon.name}</h3>
+                            <div class="weapon-price">${weapon.price}</div>
+                            <p>${weapon.description}</p>
+                            
+                            <div class="weapon-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">伤害</div>
+                                    <div class="stat-value">${weapon.damage}</div>
+                                    <div class="stat-bar">
+                                        <div class="stat-fill" style="width: ${weapon.damage}%"></div>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">射速</div>
+                                    <div class="stat-value">${weapon.fireRate}</div>
+                                    <div class="stat-bar">
+                                        <div class="stat-fill" style="width: ${weapon.fireRate}%"></div>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">精度</div>
+                                    <div class="stat-value">${weapon.accuracy}</div>
+                                    <div class="stat-bar">
+                                        <div class="stat-fill" style="width: ${weapon.accuracy}%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="weapon-features">
+                                ${featuresHtml}
+                            </div>
+                        </div>
+                    `;
+                    
+                    weaponContainer.appendChild(weaponCard);
+                });
+            }
+            
+            function updateComparisonTable(category) {
+                const weapons = weaponsData[category];
+                
+                comparisonBody.innerHTML = '';
+                
+                weapons.forEach(weapon => {
+                    const row = document.createElement('tr');
+                    
+                    let iconClass = 'fas fa-gun';
+                    
+                    row.innerHTML = `
+                        <td>
+                            <div class="weapon-name-cell">
+                                <i class="${iconClass}"></i>
+                                <span>${weapon.name}</span>
+                            </div>
+                        </td>
+                        <td>${weapon.price}</td>
+                        <td>${weapon.damage}</td>
+                        <td>${weapon.fireRate}</td>
+                        <td>${weapon.accuracy}</td>
+                        <td>${weapon.penetration}</td>
+                    `;
+                    
+                    comparisonBody.appendChild(row);
+                });
+            }
+            
+            console.log('%cCS:GO武器页面加载完成!', 'color: #f7931a; font-size: 18px; font-weight: bold;');
+        });
+    </script>
+</body>
+</html>
