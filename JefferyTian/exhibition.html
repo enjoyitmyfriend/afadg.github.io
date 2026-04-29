@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI旅行摄影集 | 数字视觉之旅</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #0a192f;
+            color: #e6f1ff;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 头部样式 */
+        header {
+            padding: 2rem 0;
+            text-align: center;
+            background: linear-gradient(135deg, #0a192f 0%, #112240 100%);
+            border-bottom: 1px solid rgba(100, 255, 218, 0.2);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        .logo-icon {
+            color: #64ffda;
+            font-size: 2.5rem;
+            margin-right: 10px;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(90deg, #64ffda, #57cbff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #8892b0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* 简介区域 */
+        .intro {
+            padding: 4rem 0;
+            text-align: center;
+            background-color: #112240;
+            border-radius: 10px;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .intro h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: #ccd6f6;
+        }
+        
+        .intro p {
+            font-size: 1.1rem;
+            max-width: 900px;
+            margin: 0 auto 2rem;
+            color: #a8b2d1;
+        }
+        
+        .ai-badge {
+            display: inline-block;
+            background: linear-gradient(90deg, #ff2e63, #ff8a00);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-top: 1rem;
+        }
+        
+        /* 画廊区域 */
+        .gallery {
+            padding: 2rem 0 4rem;
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #ccd6f6;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #64ffda, #57cbff);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 2rem;
+        }
+        
+        .photo-card {
+            background-color: #112240;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .photo-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .photo-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 3px solid #64ffda;
+        }
+        
+        .photo-info {
+            padding: 1.5rem;
+        }
+        
+        .photo-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: #e6f1ff;
+        }
+        
+        .photo-location {
+            color: #64ffda;
+            font-size: 0.95rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .photo-location i {
+            margin-right: 8px;
+        }
+        
+        .photo-desc {
+            color: #a8b2d1;
+            font-size: 0.95rem;
+        }
+        
+        /* 技术展示 */
+        .tech {
+            padding: 3rem 0;
+            background-color: #0a192f;
+            border-top: 1px solid rgba(100, 255, 218, 0.1);
+            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+        }
+        
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 2rem;
+        }
+        
+        .tech-card {
+            background-color: #112240;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .tech-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .tech-icon {
+            font-size: 2.5rem;
+            color: #64ffda;
+            margin-bottom: 1rem;
+        }
+        
+        .tech-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #ccd6f6;
+        }
+        
+        /* 页脚 */
+        footer {
+            text-align: center;
+            padding: 2.5rem 0;
+            background-color: #0a192f;
+            color: #8892b0;
+            border-top: 1px solid rgba(100, 255, 218, 0.1);
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            color: #64ffda;
+            margin-bottom: 1rem;
+        }
+        
+        .copyright {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+            
+            .intro, .gallery, .tech {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-camera-retro logo-icon"></i>
+                <h1>AI旅行摄影集</h1>
+            </div>
+            <p class="subtitle">探索由人工智能生成的奇幻旅行场景，体验数字视觉艺术与旅行摄影的完美融合</p>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section class="intro">
+            <h2>数字视觉之旅</h2>
+            <p>本摄影集展示了由先进AI图像生成技术创作的旅行场景。这些作品融合了真实世界的旅行摄影美学与AI的无限想象力，创造出超越现实的视觉体验。</p>
+            <p>从未来城市到梦幻自然景观，每一幅作品都代表了AI对旅行摄影的全新诠释。</p>
+            <div class="ai-badge">100% AI生成内容</div>
+        </section>
+        
+        <section class="gallery">
+            <h2 class="section-title">AI旅行作品集</h2>
+            <div class="gallery-grid">
+                <div class="photo-card">
+                    <img src="https://images.unsplash.com/photo-1672501815086-8c52d5f8d7b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="未来城市天际线" class="photo-img">
+                    <div class="photo-info">
+                        <h3 class="photo-title">未来都市黎明</h3>
+                        <div class="photo-location"><i class="fas fa-map-marker-alt"></i> 东京2080</div>
+                        <p class="photo-desc">AI想象下的未来东京，融合传统建筑与超现代设计，悬浮交通工具穿梭于摩天大楼之间。</p>
+                    </div>
+                </div>
+                
+                <div class="photo-card">
+                    <img src="https://images.unsplash.com/photo-1682686580391-615b1f28e5ee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="极光森林" class="photo-img">
+                    <div class="photo-info">
+                        <h3 class="photo-title">魔法极光森林</h3>
+                        <div class="photo-location"><i class="fas fa-map-marker-alt"></i> 冰岛幻想之境</div>
+                        <p class="photo-desc">AI将冰岛森林与北极光结合，创造出树木发光、生物发光的奇幻自然景观。</p>
+                    </div>
+                </div>
+                
+                <div class="photo-card">
+                    <img src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="沙漠绿洲" class="photo-img">
+                    <div class="photo-info">
+                        <h3 class="photo-title">水晶沙漠绿洲</h3>
+                        <div class="photo-location"><i class="fas fa-map-marker-alt"></i> 撒哈拉未来绿洲</div>
+                        <p class="photo-desc">AI想象中的沙漠未来绿洲，水晶结构与传统建筑融合，形成可持续生态系统。</p>
+                    </div>
+                </div>
+                
+                <div class="photo-card">
+                    <img src="https://images.unsplash.com/photo-1682687220067-dced9a881b56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="海底城市" class="photo-img">
+                    <div class="photo-info">
+                        <h3 class="photo-title">深海文明遗迹</h3>
+                        <div class="photo-location"><i class="fas fa-map-marker-alt"></i> 太平洋海底古城</div>
+                        <p class="photo-desc">AI创作的海底文明遗迹，结合古建筑美学与海洋生物，呈现神秘的水下世界。</p>
+                    </div>
+                </div>
+                
+                <div class="photo-card">
+                    <img src="https://images.unsplash.com/photo-1682686580391-615b1f28e5ee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="空中浮岛" class="photo-img">
+                    <div class="photo-info">
+                        <h3 class="photo-title">空中浮岛群落</h3>
+                        <div class="photo-location"><i class="fas fa-map-marker-alt"></i> 天空领域</div>
+                        <p class="photo-desc">AI想象的反重力生态系统，浮岛上生长着独特植物，形成天空中的生态链。</p>
+                    </div>
+                </div>
+                
+                <div class="photo-card">
+                    <img src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="未来田园" class="photo-img">
+                    <div class="photo-info">
+                        <h3 class="photo-title">数字田园风光</h3>
+                        <div class="photo-location"><i class="fas fa-map-marker-alt"></i> 托斯卡纳2099</div>
+                        <p class="photo-desc">传统田园风光与未来科技结合，AI展示了可持续农业与生态建筑的完美融合。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="tech">
+            <h2 class="section-title">AI创作技术</h2>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>神经网络生成</h3>
+                    <p>使用先进的生成对抗网络(GAN)和扩散模型，学习数百万张真实旅行照片后创造全新视觉内容。</p>
+                </div>
+                
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>风格融合</h3>
+                    <p>将不同摄影风格、地理特征和文化元素融合，创造出独一无二的旅行视觉体验。</p>
+                </div>
+                
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h3>智能增强</h3>
+                    <p>通过AI增强技术，优化光影、色彩和细节，使生成的图像具有专业摄影品质。</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-logo">
+                <i class="fas fa-camera-retro"></i>
+            </div>
+            <p>AI旅行摄影集 - 探索数字视觉的无限可能</p>
+            <p>本页面所有图像均由AI生成，展示技术与艺术的完美结合</p>
+            <div class="copyright">
+                <p>&copy; 2023 AI旅行摄影集 | 设计灵感来自真实与想象的边界</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // 添加图片悬停效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const photoCards = document.querySelectorAll('.photo-card');
+            
+            photoCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // 添加AI标签动画
+            const aiBadge = document.querySelector('.ai-badge');
+            setInterval(() => {
+                aiBadge.style.transform = aiBadge.style.transform === 'scale(1.05)' ? 'scale(1)' : 'scale(1.05)';
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
